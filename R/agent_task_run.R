@@ -1,0 +1,895 @@
+#' Create a new AgentTaskRun
+#'
+#' @description
+#' AgentTaskRun Class
+#'
+#' @docType class
+#' @title AgentTaskRun
+#' @description AgentTaskRun Class
+#' @format An \code{R6Class} generator object
+#' @field id Global identifier for object character [optional]
+#' @field href Href of the object character [optional]
+#' @field urn URN of the resource character [optional]
+#' @field nonce  character [optional]
+#' @field encryptionKey  character [optional]
+#' @field inputManifestUrl  character [optional]
+#' @field outputManifestUrl  character [optional]
+#' @field heartbeatManifestUrl  character [optional]
+#' @field outputTokenManifestUrl  character [optional]
+#' @field name  character [optional]
+#' @field description  character [optional]
+#' @field status  character [optional]
+#' @field statusDetails  character [optional]
+#' @field typeOfResource  character [optional]
+#' @field sizeOfResource  character [optional]
+#' @field tierOfResource  character [optional]
+#' @field execution  \link{Execution} [optional]
+#' @field taskVersionSummary  \link{TaskVersionSummary} [optional]
+#' @field logs  list(\link{TaskRunLogs}) [optional]
+#' @field executionRawJson  character [optional]
+#' @field acl Access Control List list(character) [optional]
+#' @field tenantId  character [optional]
+#' @field subTenantId  character [optional]
+#' @field createdBy User who created the object character [optional]
+#' @field timeCreated Date and Time (in UTC) when object was created in TES character [optional]
+#' @field modifiedBy User who updated the object character [optional]
+#' @field timeModified Date and Time (in UTC) when object was modified in TES character [optional]
+#' @importFrom R6 R6Class
+#' @importFrom jsonlite fromJSON toJSON
+#' @export
+AgentTaskRun <- R6::R6Class(
+  "AgentTaskRun",
+  public = list(
+    `id` = NULL,
+    `href` = NULL,
+    `urn` = NULL,
+    `nonce` = NULL,
+    `encryptionKey` = NULL,
+    `inputManifestUrl` = NULL,
+    `outputManifestUrl` = NULL,
+    `heartbeatManifestUrl` = NULL,
+    `outputTokenManifestUrl` = NULL,
+    `name` = NULL,
+    `description` = NULL,
+    `status` = NULL,
+    `statusDetails` = NULL,
+    `typeOfResource` = NULL,
+    `sizeOfResource` = NULL,
+    `tierOfResource` = NULL,
+    `execution` = NULL,
+    `taskVersionSummary` = NULL,
+    `logs` = NULL,
+    `executionRawJson` = NULL,
+    `acl` = NULL,
+    `tenantId` = NULL,
+    `subTenantId` = NULL,
+    `createdBy` = NULL,
+    `timeCreated` = NULL,
+    `modifiedBy` = NULL,
+    `timeModified` = NULL,
+    #' Initialize a new AgentTaskRun class.
+    #'
+    #' @description
+    #' Initialize a new AgentTaskRun class.
+    #'
+    #' @param id Global identifier for object
+    #' @param href Href of the object
+    #' @param urn URN of the resource
+    #' @param nonce nonce
+    #' @param encryptionKey encryptionKey
+    #' @param inputManifestUrl inputManifestUrl
+    #' @param outputManifestUrl outputManifestUrl
+    #' @param heartbeatManifestUrl heartbeatManifestUrl
+    #' @param outputTokenManifestUrl outputTokenManifestUrl
+    #' @param name name
+    #' @param description description
+    #' @param status status. Default to "Pending".
+    #' @param statusDetails statusDetails
+    #' @param typeOfResource typeOfResource
+    #' @param sizeOfResource sizeOfResource
+    #' @param tierOfResource tierOfResource
+    #' @param execution execution
+    #' @param taskVersionSummary taskVersionSummary
+    #' @param logs logs
+    #' @param executionRawJson executionRawJson
+    #' @param acl Access Control List
+    #' @param tenantId tenantId
+    #' @param subTenantId subTenantId
+    #' @param createdBy User who created the object
+    #' @param timeCreated Date and Time (in UTC) when object was created in TES
+    #' @param modifiedBy User who updated the object
+    #' @param timeModified Date and Time (in UTC) when object was modified in TES
+    #' @param ... Other optional arguments.
+    #' @export
+    initialize = function(`id` = NULL, `href` = NULL, `urn` = NULL, `nonce` = NULL, `encryptionKey` = NULL, `inputManifestUrl` = NULL, `outputManifestUrl` = NULL, `heartbeatManifestUrl` = NULL, `outputTokenManifestUrl` = NULL, `name` = NULL, `description` = NULL, `status` = "Pending", `statusDetails` = NULL, `typeOfResource` = NULL, `sizeOfResource` = NULL, `tierOfResource` = NULL, `execution` = NULL, `taskVersionSummary` = NULL, `logs` = NULL, `executionRawJson` = NULL, `acl` = NULL, `tenantId` = NULL, `subTenantId` = NULL, `createdBy` = NULL, `timeCreated` = NULL, `modifiedBy` = NULL, `timeModified` = NULL, ...) {
+      if (!is.null(`id`)) {
+        if (!(is.character(`id`) && length(`id`) == 1)) {
+          stop(paste("Error! Invalid data for `id`. Must be a string:", `id`))
+        }
+        self$`id` <- `id`
+      }
+      if (!is.null(`href`)) {
+        if (!(is.character(`href`) && length(`href`) == 1)) {
+          stop(paste("Error! Invalid data for `href`. Must be a string:", `href`))
+        }
+        self$`href` <- `href`
+      }
+      if (!is.null(`urn`)) {
+        if (!(is.character(`urn`) && length(`urn`) == 1)) {
+          stop(paste("Error! Invalid data for `urn`. Must be a string:", `urn`))
+        }
+        self$`urn` <- `urn`
+      }
+      if (!is.null(`nonce`)) {
+        if (!(is.character(`nonce`) && length(`nonce`) == 1)) {
+          stop(paste("Error! Invalid data for `nonce`. Must be a string:", `nonce`))
+        }
+        self$`nonce` <- `nonce`
+      }
+      if (!is.null(`encryptionKey`)) {
+        if (!(is.character(`encryptionKey`) && length(`encryptionKey`) == 1)) {
+          stop(paste("Error! Invalid data for `encryptionKey`. Must be a string:", `encryptionKey`))
+        }
+        self$`encryptionKey` <- `encryptionKey`
+      }
+      if (!is.null(`inputManifestUrl`)) {
+        if (!(is.character(`inputManifestUrl`) && length(`inputManifestUrl`) == 1)) {
+          stop(paste("Error! Invalid data for `inputManifestUrl`. Must be a string:", `inputManifestUrl`))
+        }
+        self$`inputManifestUrl` <- `inputManifestUrl`
+      }
+      if (!is.null(`outputManifestUrl`)) {
+        if (!(is.character(`outputManifestUrl`) && length(`outputManifestUrl`) == 1)) {
+          stop(paste("Error! Invalid data for `outputManifestUrl`. Must be a string:", `outputManifestUrl`))
+        }
+        self$`outputManifestUrl` <- `outputManifestUrl`
+      }
+      if (!is.null(`heartbeatManifestUrl`)) {
+        if (!(is.character(`heartbeatManifestUrl`) && length(`heartbeatManifestUrl`) == 1)) {
+          stop(paste("Error! Invalid data for `heartbeatManifestUrl`. Must be a string:", `heartbeatManifestUrl`))
+        }
+        self$`heartbeatManifestUrl` <- `heartbeatManifestUrl`
+      }
+      if (!is.null(`outputTokenManifestUrl`)) {
+        if (!(is.character(`outputTokenManifestUrl`) && length(`outputTokenManifestUrl`) == 1)) {
+          stop(paste("Error! Invalid data for `outputTokenManifestUrl`. Must be a string:", `outputTokenManifestUrl`))
+        }
+        self$`outputTokenManifestUrl` <- `outputTokenManifestUrl`
+      }
+      if (!is.null(`name`)) {
+        if (!(is.character(`name`) && length(`name`) == 1)) {
+          stop(paste("Error! Invalid data for `name`. Must be a string:", `name`))
+        }
+        self$`name` <- `name`
+      }
+      if (!is.null(`description`)) {
+        if (!(is.character(`description`) && length(`description`) == 1)) {
+          stop(paste("Error! Invalid data for `description`. Must be a string:", `description`))
+        }
+        self$`description` <- `description`
+      }
+      if (!is.null(`status`)) {
+        if (!(is.character(`status`) && length(`status`) == 1)) {
+          stop(paste("Error! Invalid data for `status`. Must be a string:", `status`))
+        }
+        self$`status` <- `status`
+      }
+      if (!is.null(`statusDetails`)) {
+        if (!(is.character(`statusDetails`) && length(`statusDetails`) == 1)) {
+          stop(paste("Error! Invalid data for `statusDetails`. Must be a string:", `statusDetails`))
+        }
+        self$`statusDetails` <- `statusDetails`
+      }
+      if (!is.null(`typeOfResource`)) {
+        if (!(is.character(`typeOfResource`) && length(`typeOfResource`) == 1)) {
+          stop(paste("Error! Invalid data for `typeOfResource`. Must be a string:", `typeOfResource`))
+        }
+        self$`typeOfResource` <- `typeOfResource`
+      }
+      if (!is.null(`sizeOfResource`)) {
+        if (!(is.character(`sizeOfResource`) && length(`sizeOfResource`) == 1)) {
+          stop(paste("Error! Invalid data for `sizeOfResource`. Must be a string:", `sizeOfResource`))
+        }
+        self$`sizeOfResource` <- `sizeOfResource`
+      }
+      if (!is.null(`tierOfResource`)) {
+        if (!(is.character(`tierOfResource`) && length(`tierOfResource`) == 1)) {
+          stop(paste("Error! Invalid data for `tierOfResource`. Must be a string:", `tierOfResource`))
+        }
+        self$`tierOfResource` <- `tierOfResource`
+      }
+      if (!is.null(`execution`)) {
+        stopifnot(R6::is.R6(`execution`))
+        self$`execution` <- `execution`
+      }
+      if (!is.null(`taskVersionSummary`)) {
+        stopifnot(R6::is.R6(`taskVersionSummary`))
+        self$`taskVersionSummary` <- `taskVersionSummary`
+      }
+      if (!is.null(`logs`)) {
+        stopifnot(is.vector(`logs`), length(`logs`) != 0)
+        sapply(`logs`, function(x) stopifnot(R6::is.R6(x)))
+        self$`logs` <- `logs`
+      }
+      if (!is.null(`executionRawJson`)) {
+        if (!(is.character(`executionRawJson`) && length(`executionRawJson`) == 1)) {
+          stop(paste("Error! Invalid data for `executionRawJson`. Must be a string:", `executionRawJson`))
+        }
+        self$`executionRawJson` <- `executionRawJson`
+      }
+      if (!is.null(`acl`)) {
+        stopifnot(is.vector(`acl`), length(`acl`) != 0)
+        sapply(`acl`, function(x) stopifnot(is.character(x)))
+        self$`acl` <- `acl`
+      }
+      if (!is.null(`tenantId`)) {
+        if (!(is.character(`tenantId`) && length(`tenantId`) == 1)) {
+          stop(paste("Error! Invalid data for `tenantId`. Must be a string:", `tenantId`))
+        }
+        self$`tenantId` <- `tenantId`
+      }
+      if (!is.null(`subTenantId`)) {
+        if (!(is.character(`subTenantId`) && length(`subTenantId`) == 1)) {
+          stop(paste("Error! Invalid data for `subTenantId`. Must be a string:", `subTenantId`))
+        }
+        self$`subTenantId` <- `subTenantId`
+      }
+      if (!is.null(`createdBy`)) {
+        if (!(is.character(`createdBy`) && length(`createdBy`) == 1)) {
+          stop(paste("Error! Invalid data for `createdBy`. Must be a string:", `createdBy`))
+        }
+        self$`createdBy` <- `createdBy`
+      }
+      if (!is.null(`timeCreated`)) {
+        if (!is.character(`timeCreated`)) {
+          stop(paste("Error! Invalid data for `timeCreated`. Must be a string:", `timeCreated`))
+        }
+        self$`timeCreated` <- `timeCreated`
+      }
+      if (!is.null(`modifiedBy`)) {
+        if (!(is.character(`modifiedBy`) && length(`modifiedBy`) == 1)) {
+          stop(paste("Error! Invalid data for `modifiedBy`. Must be a string:", `modifiedBy`))
+        }
+        self$`modifiedBy` <- `modifiedBy`
+      }
+      if (!is.null(`timeModified`)) {
+        if (!is.character(`timeModified`)) {
+          stop(paste("Error! Invalid data for `timeModified`. Must be a string:", `timeModified`))
+        }
+        self$`timeModified` <- `timeModified`
+      }
+    },
+    #' To JSON string
+    #'
+    #' @description
+    #' To JSON String
+    #'
+    #' @return AgentTaskRun in JSON format
+    #' @export
+    toJSON = function() {
+      AgentTaskRunObject <- list()
+      if (!is.null(self$`id`)) {
+        AgentTaskRunObject[["id"]] <-
+          self$`id`
+      }
+      if (!is.null(self$`href`)) {
+        AgentTaskRunObject[["href"]] <-
+          self$`href`
+      }
+      if (!is.null(self$`urn`)) {
+        AgentTaskRunObject[["urn"]] <-
+          self$`urn`
+      }
+      if (!is.null(self$`nonce`)) {
+        AgentTaskRunObject[["nonce"]] <-
+          self$`nonce`
+      }
+      if (!is.null(self$`encryptionKey`)) {
+        AgentTaskRunObject[["encryptionKey"]] <-
+          self$`encryptionKey`
+      }
+      if (!is.null(self$`inputManifestUrl`)) {
+        AgentTaskRunObject[["inputManifestUrl"]] <-
+          self$`inputManifestUrl`
+      }
+      if (!is.null(self$`outputManifestUrl`)) {
+        AgentTaskRunObject[["outputManifestUrl"]] <-
+          self$`outputManifestUrl`
+      }
+      if (!is.null(self$`heartbeatManifestUrl`)) {
+        AgentTaskRunObject[["heartbeatManifestUrl"]] <-
+          self$`heartbeatManifestUrl`
+      }
+      if (!is.null(self$`outputTokenManifestUrl`)) {
+        AgentTaskRunObject[["outputTokenManifestUrl"]] <-
+          self$`outputTokenManifestUrl`
+      }
+      if (!is.null(self$`name`)) {
+        AgentTaskRunObject[["name"]] <-
+          self$`name`
+      }
+      if (!is.null(self$`description`)) {
+        AgentTaskRunObject[["description"]] <-
+          self$`description`
+      }
+      if (!is.null(self$`status`)) {
+        AgentTaskRunObject[["status"]] <-
+          self$`status`
+      }
+      if (!is.null(self$`statusDetails`)) {
+        AgentTaskRunObject[["statusDetails"]] <-
+          self$`statusDetails`
+      }
+      if (!is.null(self$`typeOfResource`)) {
+        AgentTaskRunObject[["typeOfResource"]] <-
+          self$`typeOfResource`
+      }
+      if (!is.null(self$`sizeOfResource`)) {
+        AgentTaskRunObject[["sizeOfResource"]] <-
+          self$`sizeOfResource`
+      }
+      if (!is.null(self$`tierOfResource`)) {
+        AgentTaskRunObject[["tierOfResource"]] <-
+          self$`tierOfResource`
+      }
+      if (!is.null(self$`execution`)) {
+        AgentTaskRunObject[["execution"]] <-
+          self$`execution`$toJSON()
+      }
+      if (!is.null(self$`taskVersionSummary`)) {
+        AgentTaskRunObject[["taskVersionSummary"]] <-
+          self$`taskVersionSummary`$toJSON()
+      }
+      if (!is.null(self$`logs`)) {
+        AgentTaskRunObject[["logs"]] <-
+          lapply(self$`logs`, function(x) x$toJSON())
+      }
+      if (!is.null(self$`executionRawJson`)) {
+        AgentTaskRunObject[["executionRawJson"]] <-
+          self$`executionRawJson`
+      }
+      if (!is.null(self$`acl`)) {
+        AgentTaskRunObject[["acl"]] <-
+          self$`acl`
+      }
+      if (!is.null(self$`tenantId`)) {
+        AgentTaskRunObject[["tenantId"]] <-
+          self$`tenantId`
+      }
+      if (!is.null(self$`subTenantId`)) {
+        AgentTaskRunObject[["subTenantId"]] <-
+          self$`subTenantId`
+      }
+      if (!is.null(self$`createdBy`)) {
+        AgentTaskRunObject[["createdBy"]] <-
+          self$`createdBy`
+      }
+      if (!is.null(self$`timeCreated`)) {
+        AgentTaskRunObject[["timeCreated"]] <-
+          self$`timeCreated`
+      }
+      if (!is.null(self$`modifiedBy`)) {
+        AgentTaskRunObject[["modifiedBy"]] <-
+          self$`modifiedBy`
+      }
+      if (!is.null(self$`timeModified`)) {
+        AgentTaskRunObject[["timeModified"]] <-
+          self$`timeModified`
+      }
+      AgentTaskRunObject
+    },
+    #' Deserialize JSON string into an instance of AgentTaskRun
+    #'
+    #' @description
+    #' Deserialize JSON string into an instance of AgentTaskRun
+    #'
+    #' @param input_json the JSON input
+    #' @return the instance of AgentTaskRun
+    #' @export
+    fromJSON = function(input_json) {
+      this_object <- jsonlite::fromJSON(input_json)
+      if (!is.null(this_object$`id`)) {
+        self$`id` <- this_object$`id`
+      }
+      if (!is.null(this_object$`href`)) {
+        self$`href` <- this_object$`href`
+      }
+      if (!is.null(this_object$`urn`)) {
+        self$`urn` <- this_object$`urn`
+      }
+      if (!is.null(this_object$`nonce`)) {
+        self$`nonce` <- this_object$`nonce`
+      }
+      if (!is.null(this_object$`encryptionKey`)) {
+        self$`encryptionKey` <- this_object$`encryptionKey`
+      }
+      if (!is.null(this_object$`inputManifestUrl`)) {
+        self$`inputManifestUrl` <- this_object$`inputManifestUrl`
+      }
+      if (!is.null(this_object$`outputManifestUrl`)) {
+        self$`outputManifestUrl` <- this_object$`outputManifestUrl`
+      }
+      if (!is.null(this_object$`heartbeatManifestUrl`)) {
+        self$`heartbeatManifestUrl` <- this_object$`heartbeatManifestUrl`
+      }
+      if (!is.null(this_object$`outputTokenManifestUrl`)) {
+        self$`outputTokenManifestUrl` <- this_object$`outputTokenManifestUrl`
+      }
+      if (!is.null(this_object$`name`)) {
+        self$`name` <- this_object$`name`
+      }
+      if (!is.null(this_object$`description`)) {
+        self$`description` <- this_object$`description`
+      }
+      if (!is.null(this_object$`status`)) {
+        self$`status` <- this_object$`status`
+      }
+      if (!is.null(this_object$`statusDetails`)) {
+        self$`statusDetails` <- this_object$`statusDetails`
+      }
+      if (!is.null(this_object$`typeOfResource`)) {
+        self$`typeOfResource` <- this_object$`typeOfResource`
+      }
+      if (!is.null(this_object$`sizeOfResource`)) {
+        self$`sizeOfResource` <- this_object$`sizeOfResource`
+      }
+      if (!is.null(this_object$`tierOfResource`)) {
+        self$`tierOfResource` <- this_object$`tierOfResource`
+      }
+      if (!is.null(this_object$`execution`)) {
+        `execution_object` <- Execution$new()
+        `execution_object`$fromJSON(jsonlite::toJSON(this_object$`execution`, auto_unbox = TRUE, digits = NA))
+        self$`execution` <- `execution_object`
+      }
+      if (!is.null(this_object$`taskVersionSummary`)) {
+        `taskversionsummary_object` <- TaskVersionSummary$new()
+        `taskversionsummary_object`$fromJSON(jsonlite::toJSON(this_object$`taskVersionSummary`, auto_unbox = TRUE, digits = NA))
+        self$`taskVersionSummary` <- `taskversionsummary_object`
+      }
+      if (!is.null(this_object$`logs`)) {
+        self$`logs` <- ApiClient$new()$deserializeObj(this_object$`logs`, "array[TaskRunLogs]", loadNamespace("icar1"))
+      }
+      if (!is.null(this_object$`executionRawJson`)) {
+        self$`executionRawJson` <- this_object$`executionRawJson`
+      }
+      if (!is.null(this_object$`acl`)) {
+        self$`acl` <- ApiClient$new()$deserializeObj(this_object$`acl`, "array[character]", loadNamespace("icar1"))
+      }
+      if (!is.null(this_object$`tenantId`)) {
+        self$`tenantId` <- this_object$`tenantId`
+      }
+      if (!is.null(this_object$`subTenantId`)) {
+        self$`subTenantId` <- this_object$`subTenantId`
+      }
+      if (!is.null(this_object$`createdBy`)) {
+        self$`createdBy` <- this_object$`createdBy`
+      }
+      if (!is.null(this_object$`timeCreated`)) {
+        self$`timeCreated` <- this_object$`timeCreated`
+      }
+      if (!is.null(this_object$`modifiedBy`)) {
+        self$`modifiedBy` <- this_object$`modifiedBy`
+      }
+      if (!is.null(this_object$`timeModified`)) {
+        self$`timeModified` <- this_object$`timeModified`
+      }
+      self
+    },
+    #' To JSON string
+    #'
+    #' @description
+    #' To JSON String
+    #'
+    #' @return AgentTaskRun in JSON format
+    #' @export
+    toJSONString = function() {
+      jsoncontent <- c(
+        if (!is.null(self$`id`)) {
+          sprintf(
+          '"id":
+            "%s"
+                    ',
+          self$`id`
+          )
+        },
+        if (!is.null(self$`href`)) {
+          sprintf(
+          '"href":
+            "%s"
+                    ',
+          self$`href`
+          )
+        },
+        if (!is.null(self$`urn`)) {
+          sprintf(
+          '"urn":
+            "%s"
+                    ',
+          self$`urn`
+          )
+        },
+        if (!is.null(self$`nonce`)) {
+          sprintf(
+          '"nonce":
+            "%s"
+                    ',
+          self$`nonce`
+          )
+        },
+        if (!is.null(self$`encryptionKey`)) {
+          sprintf(
+          '"encryptionKey":
+            "%s"
+                    ',
+          self$`encryptionKey`
+          )
+        },
+        if (!is.null(self$`inputManifestUrl`)) {
+          sprintf(
+          '"inputManifestUrl":
+            "%s"
+                    ',
+          self$`inputManifestUrl`
+          )
+        },
+        if (!is.null(self$`outputManifestUrl`)) {
+          sprintf(
+          '"outputManifestUrl":
+            "%s"
+                    ',
+          self$`outputManifestUrl`
+          )
+        },
+        if (!is.null(self$`heartbeatManifestUrl`)) {
+          sprintf(
+          '"heartbeatManifestUrl":
+            "%s"
+                    ',
+          self$`heartbeatManifestUrl`
+          )
+        },
+        if (!is.null(self$`outputTokenManifestUrl`)) {
+          sprintf(
+          '"outputTokenManifestUrl":
+            "%s"
+                    ',
+          self$`outputTokenManifestUrl`
+          )
+        },
+        if (!is.null(self$`name`)) {
+          sprintf(
+          '"name":
+            "%s"
+                    ',
+          self$`name`
+          )
+        },
+        if (!is.null(self$`description`)) {
+          sprintf(
+          '"description":
+            "%s"
+                    ',
+          self$`description`
+          )
+        },
+        if (!is.null(self$`status`)) {
+          sprintf(
+          '"status":
+            "%s"
+                    ',
+          self$`status`
+          )
+        },
+        if (!is.null(self$`statusDetails`)) {
+          sprintf(
+          '"statusDetails":
+            "%s"
+                    ',
+          self$`statusDetails`
+          )
+        },
+        if (!is.null(self$`typeOfResource`)) {
+          sprintf(
+          '"typeOfResource":
+            "%s"
+                    ',
+          self$`typeOfResource`
+          )
+        },
+        if (!is.null(self$`sizeOfResource`)) {
+          sprintf(
+          '"sizeOfResource":
+            "%s"
+                    ',
+          self$`sizeOfResource`
+          )
+        },
+        if (!is.null(self$`tierOfResource`)) {
+          sprintf(
+          '"tierOfResource":
+            "%s"
+                    ',
+          self$`tierOfResource`
+          )
+        },
+        if (!is.null(self$`execution`)) {
+          sprintf(
+          '"execution":
+          %s
+          ',
+          jsonlite::toJSON(self$`execution`$toJSON(), auto_unbox = TRUE, digits = NA)
+          )
+        },
+        if (!is.null(self$`taskVersionSummary`)) {
+          sprintf(
+          '"taskVersionSummary":
+          %s
+          ',
+          jsonlite::toJSON(self$`taskVersionSummary`$toJSON(), auto_unbox = TRUE, digits = NA)
+          )
+        },
+        if (!is.null(self$`logs`)) {
+          sprintf(
+          '"logs":
+          [%s]
+',
+          paste(sapply(self$`logs`, function(x) jsonlite::toJSON(x$toJSON(), auto_unbox = TRUE, digits = NA)), collapse = ",")
+          )
+        },
+        if (!is.null(self$`executionRawJson`)) {
+          sprintf(
+          '"executionRawJson":
+            "%s"
+                    ',
+          self$`executionRawJson`
+          )
+        },
+        if (!is.null(self$`acl`)) {
+          sprintf(
+          '"acl":
+             [%s]
+          ',
+          paste(unlist(lapply(self$`acl`, function(x) paste0('"', x, '"'))), collapse = ",")
+          )
+        },
+        if (!is.null(self$`tenantId`)) {
+          sprintf(
+          '"tenantId":
+            "%s"
+                    ',
+          self$`tenantId`
+          )
+        },
+        if (!is.null(self$`subTenantId`)) {
+          sprintf(
+          '"subTenantId":
+            "%s"
+                    ',
+          self$`subTenantId`
+          )
+        },
+        if (!is.null(self$`createdBy`)) {
+          sprintf(
+          '"createdBy":
+            "%s"
+                    ',
+          self$`createdBy`
+          )
+        },
+        if (!is.null(self$`timeCreated`)) {
+          sprintf(
+          '"timeCreated":
+            "%s"
+                    ',
+          self$`timeCreated`
+          )
+        },
+        if (!is.null(self$`modifiedBy`)) {
+          sprintf(
+          '"modifiedBy":
+            "%s"
+                    ',
+          self$`modifiedBy`
+          )
+        },
+        if (!is.null(self$`timeModified`)) {
+          sprintf(
+          '"timeModified":
+            "%s"
+                    ',
+          self$`timeModified`
+          )
+        }
+      )
+      jsoncontent <- paste(jsoncontent, collapse = ",")
+      json_string <- as.character(jsonlite::minify(paste("{", jsoncontent, "}", sep = "")))
+    },
+    #' Deserialize JSON string into an instance of AgentTaskRun
+    #'
+    #' @description
+    #' Deserialize JSON string into an instance of AgentTaskRun
+    #'
+    #' @param input_json the JSON input
+    #' @return the instance of AgentTaskRun
+    #' @export
+    fromJSONString = function(input_json) {
+      this_object <- jsonlite::fromJSON(input_json)
+      self$`id` <- this_object$`id`
+      self$`href` <- this_object$`href`
+      self$`urn` <- this_object$`urn`
+      self$`nonce` <- this_object$`nonce`
+      self$`encryptionKey` <- this_object$`encryptionKey`
+      self$`inputManifestUrl` <- this_object$`inputManifestUrl`
+      self$`outputManifestUrl` <- this_object$`outputManifestUrl`
+      self$`heartbeatManifestUrl` <- this_object$`heartbeatManifestUrl`
+      self$`outputTokenManifestUrl` <- this_object$`outputTokenManifestUrl`
+      self$`name` <- this_object$`name`
+      self$`description` <- this_object$`description`
+      self$`status` <- this_object$`status`
+      self$`statusDetails` <- this_object$`statusDetails`
+      self$`typeOfResource` <- this_object$`typeOfResource`
+      self$`sizeOfResource` <- this_object$`sizeOfResource`
+      self$`tierOfResource` <- this_object$`tierOfResource`
+      self$`execution` <- Execution$new()$fromJSON(jsonlite::toJSON(this_object$`execution`, auto_unbox = TRUE, digits = NA))
+      self$`taskVersionSummary` <- TaskVersionSummary$new()$fromJSON(jsonlite::toJSON(this_object$`taskVersionSummary`, auto_unbox = TRUE, digits = NA))
+      self$`logs` <- ApiClient$new()$deserializeObj(this_object$`logs`, "array[TaskRunLogs]", loadNamespace("icar1"))
+      self$`executionRawJson` <- this_object$`executionRawJson`
+      self$`acl` <- ApiClient$new()$deserializeObj(this_object$`acl`, "array[character]", loadNamespace("icar1"))
+      self$`tenantId` <- this_object$`tenantId`
+      self$`subTenantId` <- this_object$`subTenantId`
+      self$`createdBy` <- this_object$`createdBy`
+      self$`timeCreated` <- this_object$`timeCreated`
+      self$`modifiedBy` <- this_object$`modifiedBy`
+      self$`timeModified` <- this_object$`timeModified`
+      self
+    },
+    #' Validate JSON input with respect to AgentTaskRun
+    #'
+    #' @description
+    #' Validate JSON input with respect to AgentTaskRun and throw an exception if invalid
+    #'
+    #' @param input the JSON input
+    #' @export
+    validateJSON = function(input) {
+      input_json <- jsonlite::fromJSON(input)
+    },
+    #' To string (JSON format)
+    #'
+    #' @description
+    #' To string (JSON format)
+    #'
+    #' @return String representation of AgentTaskRun
+    #' @export
+    toString = function() {
+      self$toJSONString()
+    },
+    #' Return true if the values in all fields are valid.
+    #'
+    #' @description
+    #' Return true if the values in all fields are valid.
+    #'
+    #' @return true if the values in all fields are valid.
+    #' @export
+    isValid = function() {
+      if (nchar(self$`name`) > 255) {
+        return(FALSE)
+      }
+      if (nchar(self$`name`) < 0) {
+        return(FALSE)
+      }
+
+      if (nchar(self$`description`) > 4096) {
+        return(FALSE)
+      }
+      if (nchar(self$`description`) < 0) {
+        return(FALSE)
+      }
+
+      if (nchar(self$`statusDetails`) > 4096) {
+        return(FALSE)
+      }
+      if (nchar(self$`statusDetails`) < 0) {
+        return(FALSE)
+      }
+
+      if (nchar(self$`typeOfResource`) > 255) {
+        return(FALSE)
+      }
+      if (nchar(self$`typeOfResource`) < 0) {
+        return(FALSE)
+      }
+
+      if (nchar(self$`sizeOfResource`) > 255) {
+        return(FALSE)
+      }
+      if (nchar(self$`sizeOfResource`) < 0) {
+        return(FALSE)
+      }
+
+      if (nchar(self$`tierOfResource`) > 255) {
+        return(FALSE)
+      }
+      if (nchar(self$`tierOfResource`) < 0) {
+        return(FALSE)
+      }
+
+      TRUE
+    },
+    #' Return a list of invalid fields (if any).
+    #'
+    #' @description
+    #' Return a list of invalid fields (if any).
+    #'
+    #' @return A list of invalid fields (if any).
+    #' @export
+    getInvalidFields = function() {
+      invalid_fields <- list()
+      if (nchar(self$`name`) > 255) {
+        invalid_fields["name"] <- "Invalid length for `name`, must be smaller than or equal to 255."
+      }
+      if (nchar(self$`name`) < 0) {
+        invalid_fields["name"] <- "Invalid length for `name`, must be bigger than or equal to 0."
+      }
+
+      if (nchar(self$`description`) > 4096) {
+        invalid_fields["description"] <- "Invalid length for `description`, must be smaller than or equal to 4096."
+      }
+      if (nchar(self$`description`) < 0) {
+        invalid_fields["description"] <- "Invalid length for `description`, must be bigger than or equal to 0."
+      }
+
+      if (nchar(self$`statusDetails`) > 4096) {
+        invalid_fields["statusDetails"] <- "Invalid length for `statusDetails`, must be smaller than or equal to 4096."
+      }
+      if (nchar(self$`statusDetails`) < 0) {
+        invalid_fields["statusDetails"] <- "Invalid length for `statusDetails`, must be bigger than or equal to 0."
+      }
+
+      if (nchar(self$`typeOfResource`) > 255) {
+        invalid_fields["typeOfResource"] <- "Invalid length for `typeOfResource`, must be smaller than or equal to 255."
+      }
+      if (nchar(self$`typeOfResource`) < 0) {
+        invalid_fields["typeOfResource"] <- "Invalid length for `typeOfResource`, must be bigger than or equal to 0."
+      }
+
+      if (nchar(self$`sizeOfResource`) > 255) {
+        invalid_fields["sizeOfResource"] <- "Invalid length for `sizeOfResource`, must be smaller than or equal to 255."
+      }
+      if (nchar(self$`sizeOfResource`) < 0) {
+        invalid_fields["sizeOfResource"] <- "Invalid length for `sizeOfResource`, must be bigger than or equal to 0."
+      }
+
+      if (nchar(self$`tierOfResource`) > 255) {
+        invalid_fields["tierOfResource"] <- "Invalid length for `tierOfResource`, must be smaller than or equal to 255."
+      }
+      if (nchar(self$`tierOfResource`) < 0) {
+        invalid_fields["tierOfResource"] <- "Invalid length for `tierOfResource`, must be bigger than or equal to 0."
+      }
+
+      invalid_fields
+    },
+    #' Print the object
+    #'
+    #' @description
+    #' Print the object
+    #'
+    #' @export
+    print = function() {
+      print(jsonlite::prettify(self$toJSONString()))
+      invisible(self)
+    }
+  ),
+  # Lock the class to prevent modifications to the method or field
+  lock_class = TRUE
+)
+## Uncomment below to unlock the class to allow modifications of the method or field
+# AgentTaskRun$unlock()
+#
+## Below is an example to define the print function
+# AgentTaskRun$set("public", "print", function(...) {
+#   print(jsonlite::prettify(self$toJSONString()))
+#   invisible(self)
+# })
+## Uncomment below to lock the class to prevent modifications to the method or field
+# AgentTaskRun$lock()
+
