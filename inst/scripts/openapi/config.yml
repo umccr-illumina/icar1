@@ -1,0 +1,4 @@
+packageName: icar1
+exceptionPackage: rlang
+packageVersion: 0.0.1
+library: httr
