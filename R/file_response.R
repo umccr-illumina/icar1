@@ -514,19 +514,19 @@ FileResponse <- R6::R6Class(
       if (!is.null(this_object$`isUploaded`)) {
         self$`isUploaded` <- this_object$`isUploaded`
       }
-      if (!is.null(this_object$`archiveStatus`)) {
-        `archivestatus_object` <- ArchiveStatuses$new()
-        `archivestatus_object`$fromJSON(jsonlite::toJSON(this_object$`archiveStatus`, auto_unbox = TRUE, digits = NA))
-        self$`archiveStatus` <- `archivestatus_object`
-      }
+      #if (!is.null(this_object$`archiveStatus`)) {
+      #  `archivestatus_object` <- ArchiveStatuses$new()
+      #  `archivestatus_object`$fromJSON(jsonlite::toJSON(this_object$`archiveStatus`, auto_unbox = TRUE, digits = NA))
+      #  self$`archiveStatus` <- `archivestatus_object`
+      #}
       if (!is.null(this_object$`timeArchived`)) {
         self$`timeArchived` <- this_object$`timeArchived`
       }
-      if (!is.null(this_object$`storageTier`)) {
-        `storagetier_object` <- StorageTier$new()
-        `storagetier_object`$fromJSON(jsonlite::toJSON(this_object$`storageTier`, auto_unbox = TRUE, digits = NA))
-        self$`storageTier` <- `storagetier_object`
-      }
+      #if (!is.null(this_object$`storageTier`)) {
+      #  `storagetier_object` <- StorageTier$new()
+      #  `storagetier_object`$fromJSON(jsonlite::toJSON(this_object$`storageTier`, auto_unbox = TRUE, digits = NA))
+      #  self$`storageTier` <- `storagetier_object`
+      #}
       if (!is.null(this_object$`eTag`)) {
         self$`eTag` <- this_object$`eTag`
       }
@@ -536,27 +536,27 @@ FileResponse <- R6::R6Class(
       if (!is.null(this_object$`formatEdam`)) {
         self$`formatEdam` <- this_object$`formatEdam`
       }
-      if (!is.null(this_object$`status`)) {
-        `status_object` <- FileStatus$new()
-        `status_object`$fromJSON(jsonlite::toJSON(this_object$`status`, auto_unbox = TRUE, digits = NA))
-        self$`status` <- `status_object`
-      }
-      if (!is.null(this_object$`lifeCycle`)) {
-        `lifecycle_object` <- FileLifeCycleSettings$new()
-        `lifecycle_object`$fromJSON(jsonlite::toJSON(this_object$`lifeCycle`, auto_unbox = TRUE, digits = NA))
-        self$`lifeCycle` <- `lifecycle_object`
-      }
+      #if (!is.null(this_object$`status`)) {
+      #  `status_object` <- FileStatus$new()
+      #  `status_object`$fromJSON(jsonlite::toJSON(this_object$`status`, auto_unbox = TRUE, digits = NA))
+      #  self$`status` <- `status_object`
+      #}
+      #if (!is.null(this_object$`lifeCycle`)) {
+      #  `lifecycle_object` <- FileLifeCycleSettings$new()
+      #  `lifecycle_object`$fromJSON(jsonlite::toJSON(this_object$`lifeCycle`, auto_unbox = TRUE, digits = NA))
+      #  self$`lifeCycle` <- `lifecycle_object`
+      #}
       if (!is.null(this_object$`versionId`)) {
         self$`versionId` <- this_object$`versionId`
       }
       if (!is.null(this_object$`presignedUrl`)) {
         self$`presignedUrl` <- this_object$`presignedUrl`
       }
-      if (!is.null(this_object$`objectStoreAccess`)) {
-        `objectstoreaccess_object` <- ObjectStoreAccess$new()
-        `objectstoreaccess_object`$fromJSON(jsonlite::toJSON(this_object$`objectStoreAccess`, auto_unbox = TRUE, digits = NA))
-        self$`objectStoreAccess` <- `objectstoreaccess_object`
-      }
+      #if (!is.null(this_object$`objectStoreAccess`)) {
+      #  `objectstoreaccess_object` <- ObjectStoreAccess$new()
+      #  `objectstoreaccess_object`$fromJSON(jsonlite::toJSON(this_object$`objectStoreAccess`, auto_unbox = TRUE, digits = NA))
+      #  self$`objectStoreAccess` <- `objectstoreaccess_object`
+      #}
       self
     },
     #' To JSON string
@@ -859,7 +859,7 @@ FileResponse <- R6::R6Class(
       self$`sizeInBytes` <- this_object$`sizeInBytes`
       self$`metadata` <- this_object$`metadata`
       self$`isUploaded` <- this_object$`isUploaded`
-      self$`archiveStatus` <- ArchiveStatuses$new()$fromJSON(jsonlite::toJSON(this_object$`archiveStatus`, auto_unbox = TRUE, digits = NA))
+      #self$`archiveStatus` <- ArchiveStatuses$new()$fromJSON(jsonlite::toJSON(this_object$`archiveStatus`, auto_unbox = TRUE, digits = NA))
       self$`timeArchived` <- this_object$`timeArchived`
       self$`storageTier` <- StorageTier$new()$fromJSON(jsonlite::toJSON(this_object$`storageTier`, auto_unbox = TRUE, digits = NA))
       self$`eTag` <- this_object$`eTag`

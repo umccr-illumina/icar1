@@ -218,13 +218,13 @@ FileWriteableResponse <- R6::R6Class(
         }
         self$`isUploaded` <- `isUploaded`
       }
-      if (!is.null(`archiveStatus`)) {
-        if (!(`archiveStatus` %in% c())) {
-          stop(paste("Error! \"", `archiveStatus`, "\" cannot be assigned to `archiveStatus`. Must be .", sep = ""))
-        }
-        stopifnot(R6::is.R6(`archiveStatus`))
-        self$`archiveStatus` <- `archiveStatus`
-      }
+      #if (!is.null(`archiveStatus`)) {
+      #  if (!(`archiveStatus` %in% c())) {
+      #    stop(paste("Error! \"", `archiveStatus`, "\" cannot be assigned to `archiveStatus`. Must be .", sep = ""))
+      #  }
+      #  stopifnot(R6::is.R6(`archiveStatus`))
+      #  self$`archiveStatus` <- `archiveStatus`
+      #}
       if (!is.null(`timeArchived`)) {
         if (!is.character(`timeArchived`)) {
           stop(paste("Error! Invalid data for `timeArchived`. Must be a string:", `timeArchived`))
@@ -363,10 +363,10 @@ FileWriteableResponse <- R6::R6Class(
         FileWriteableResponseObject[["isUploaded"]] <-
           self$`isUploaded`
       }
-      if (!is.null(self$`archiveStatus`)) {
-        FileWriteableResponseObject[["archiveStatus"]] <-
-          self$`archiveStatus`$toJSON()
-      }
+      #if (!is.null(self$`archiveStatus`)) {
+      #  FileWriteableResponseObject[["archiveStatus"]] <-
+      #    self$`archiveStatus`$toJSON()
+      #}
       if (!is.null(self$`timeArchived`)) {
         FileWriteableResponseObject[["timeArchived"]] <-
           self$`timeArchived`
@@ -472,11 +472,11 @@ FileWriteableResponse <- R6::R6Class(
       if (!is.null(this_object$`isUploaded`)) {
         self$`isUploaded` <- this_object$`isUploaded`
       }
-      if (!is.null(this_object$`archiveStatus`)) {
-        `archivestatus_object` <- ArchiveStatuses$new()
-        `archivestatus_object`$fromJSON(jsonlite::toJSON(this_object$`archiveStatus`, auto_unbox = TRUE, digits = NA))
-        self$`archiveStatus` <- `archivestatus_object`
-      }
+      #if (!is.null(this_object$`archiveStatus`)) {
+      #  `archivestatus_object` <- ArchiveStatuses$new()
+      #  `archivestatus_object`$fromJSON(jsonlite::toJSON(this_object$`archiveStatus`, auto_unbox = TRUE, digits = NA))
+      #  self$`archiveStatus` <- `archivestatus_object`
+      #}
       if (!is.null(this_object$`timeArchived`)) {
         self$`timeArchived` <- this_object$`timeArchived`
       }
@@ -788,7 +788,7 @@ FileWriteableResponse <- R6::R6Class(
       self$`sizeInBytes` <- this_object$`sizeInBytes`
       self$`metadata` <- this_object$`metadata`
       self$`isUploaded` <- this_object$`isUploaded`
-      self$`archiveStatus` <- ArchiveStatuses$new()$fromJSON(jsonlite::toJSON(this_object$`archiveStatus`, auto_unbox = TRUE, digits = NA))
+      #self$`archiveStatus` <- ArchiveStatuses$new()$fromJSON(jsonlite::toJSON(this_object$`archiveStatus`, auto_unbox = TRUE, digits = NA))
       self$`timeArchived` <- this_object$`timeArchived`
       self$`storageTier` <- StorageTier$new()$fromJSON(jsonlite::toJSON(this_object$`storageTier`, auto_unbox = TRUE, digits = NA))
       self$`eTag` <- this_object$`eTag`
