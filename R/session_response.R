@@ -9,7 +9,7 @@
 #' @format An \code{R6Class} generator object
 #' @field id A unique identifier for this Session character [optional]
 #' @field folderUrn The Universal Resource Name of the Folder associated with the Session character [optional]
-#' @field status  \link{SessionStatus} [optional]
+#' @field status  character [optional]
 #' @field timeCreated The date & time this Session was created, in GDS character [optional]
 #' @field timeCredentialsExpire The date & time this upload session expires character [optional]
 #' @field timeClosed The date & time this Session was closed, in GDS character [optional]
@@ -58,10 +58,9 @@ SessionResponse <- R6::R6Class(
         self$`folderUrn` <- `folderUrn`
       }
       if (!is.null(`status`)) {
-        if (!(`status` %in% c())) {
-          stop(paste("Error! \"", `status`, "\" cannot be assigned to `status`. Must be .", sep = ""))
+        if (!(is.character(`status`) && length(`status`) == 1)) {
+          stop(paste("Error! Invalid data for `status`. Must be a string:", `status`))
         }
-        stopifnot(R6::is.R6(`status`))
         self$`status` <- `status`
       }
       if (!is.null(`timeCreated`)) {
@@ -111,7 +110,7 @@ SessionResponse <- R6::R6Class(
       }
       if (!is.null(self$`status`)) {
         SessionResponseObject[["status"]] <-
-          self$`status`$toJSON()
+          self$`status`
       }
       if (!is.null(self$`timeCreated`)) {
         SessionResponseObject[["timeCreated"]] <-
@@ -152,9 +151,7 @@ SessionResponse <- R6::R6Class(
         self$`folderUrn` <- this_object$`folderUrn`
       }
       if (!is.null(this_object$`status`)) {
-        `status_object` <- SessionStatus$new()
-        `status_object`$fromJSON(jsonlite::toJSON(this_object$`status`, auto_unbox = TRUE, digits = NA))
-        self$`status` <- `status_object`
+        self$`status` <- this_object$`status`
       }
       if (!is.null(this_object$`timeCreated`)) {
         self$`timeCreated` <- this_object$`timeCreated`
@@ -201,9 +198,9 @@ SessionResponse <- R6::R6Class(
         if (!is.null(self$`status`)) {
           sprintf(
           '"status":
-          %s
-          ',
-          jsonlite::toJSON(self$`status`$toJSON(), auto_unbox = TRUE, digits = NA)
+            "%s"
+                    ',
+          self$`status`
           )
         },
         if (!is.null(self$`timeCreated`)) {
@@ -262,7 +259,7 @@ SessionResponse <- R6::R6Class(
       this_object <- jsonlite::fromJSON(input_json)
       self$`id` <- this_object$`id`
       self$`folderUrn` <- this_object$`folderUrn`
-      self$`status` <- SessionStatus$new()$fromJSON(jsonlite::toJSON(this_object$`status`, auto_unbox = TRUE, digits = NA))
+      self$`status` <- this_object$`status`
       self$`timeCreated` <- this_object$`timeCreated`
       self$`timeCredentialsExpire` <- this_object$`timeCredentialsExpire`
       self$`timeClosed` <- this_object$`timeClosed`

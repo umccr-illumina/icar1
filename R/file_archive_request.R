@@ -7,7 +7,7 @@
 #' @title FileArchiveRequest
 #' @description FileArchiveRequest Class
 #' @format An \code{R6Class} generator object
-#' @field storageTier  \link{FileArchiveStorageTier}
+#' @field storageTier  character
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -25,10 +25,9 @@ FileArchiveRequest <- R6::R6Class(
     #' @export
     initialize = function(`storageTier`, ...) {
       if (!missing(`storageTier`)) {
-        if (!(`storageTier` %in% c())) {
-          stop(paste("Error! \"", `storageTier`, "\" cannot be assigned to `storageTier`. Must be .", sep = ""))
+        if (!(is.character(`storageTier`) && length(`storageTier`) == 1)) {
+          stop(paste("Error! Invalid data for `storageTier`. Must be a string:", `storageTier`))
         }
-        stopifnot(R6::is.R6(`storageTier`))
         self$`storageTier` <- `storageTier`
       }
     },
@@ -43,7 +42,7 @@ FileArchiveRequest <- R6::R6Class(
       FileArchiveRequestObject <- list()
       if (!is.null(self$`storageTier`)) {
         FileArchiveRequestObject[["storageTier"]] <-
-          self$`storageTier`$toJSON()
+          self$`storageTier`
       }
       FileArchiveRequestObject
     },
@@ -58,9 +57,7 @@ FileArchiveRequest <- R6::R6Class(
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`storageTier`)) {
-        `storagetier_object` <- FileArchiveStorageTier$new()
-        `storagetier_object`$fromJSON(jsonlite::toJSON(this_object$`storageTier`, auto_unbox = TRUE, digits = NA))
-        self$`storageTier` <- `storagetier_object`
+        self$`storageTier` <- this_object$`storageTier`
       }
       self
     },
@@ -76,9 +73,9 @@ FileArchiveRequest <- R6::R6Class(
         if (!is.null(self$`storageTier`)) {
           sprintf(
           '"storageTier":
-          %s
-          ',
-          jsonlite::toJSON(self$`storageTier`$toJSON(), auto_unbox = TRUE, digits = NA)
+            "%s"
+                    ',
+          self$`storageTier`
           )
         }
       )
@@ -95,7 +92,7 @@ FileArchiveRequest <- R6::R6Class(
     #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
-      self$`storageTier` <- FileArchiveStorageTier$new()$fromJSON(jsonlite::toJSON(this_object$`storageTier`, auto_unbox = TRUE, digits = NA))
+      self$`storageTier` <- this_object$`storageTier`
       self
     },
     #' Validate JSON input with respect to FileArchiveRequest
@@ -109,7 +106,9 @@ FileArchiveRequest <- R6::R6Class(
       input_json <- jsonlite::fromJSON(input)
       # check the required field `storageTier`
       if (!is.null(input_json$`storageTier`)) {
-        stopifnot(R6::is.R6(input_json$`storageTier`))
+        if (!(is.character(input_json$`storageTier`) && length(input_json$`storageTier`) == 1)) {
+          stop(paste("Error! Invalid data for `storageTier`. Must be a string:", input_json$`storageTier`))
+        }
       } else {
         stop(paste("The JSON input `", input, "` is invalid for FileArchiveRequest: the required field `storageTier` is missing."))
       }

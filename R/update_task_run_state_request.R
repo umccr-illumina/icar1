@@ -34,9 +34,6 @@ UpdateTaskRunStateRequest <- R6::R6Class(
     #' @export
     initialize = function(`status` = NULL, `statusDetails` = NULL, `startTime` = NULL, `completionTime` = NULL, ...) {
       if (!is.null(`status`)) {
-        if (!(`status` %in% c("CheckedOut", "Runnable", "Running", "Finalizing", "Completed", "FailedRestartable", "Failed", "Aborted", "TimedOut"))) {
-          stop(paste("Error! \"", `status`, "\" cannot be assigned to `status`. Must be \"CheckedOut\", \"Runnable\", \"Running\", \"Finalizing\", \"Completed\", \"FailedRestartable\", \"Failed\", \"Aborted\", \"TimedOut\".", sep = ""))
-        }
         if (!(is.character(`status`) && length(`status`) == 1)) {
           stop(paste("Error! Invalid data for `status`. Must be a string:", `status`))
         }
@@ -99,9 +96,6 @@ UpdateTaskRunStateRequest <- R6::R6Class(
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`status`)) {
-        if (!is.null(this_object$`status`) && !(this_object$`status` %in% c("CheckedOut", "Runnable", "Running", "Finalizing", "Completed", "FailedRestartable", "Failed", "Aborted", "TimedOut"))) {
-          stop(paste("Error! \"", this_object$`status`, "\" cannot be assigned to `status`. Must be \"CheckedOut\", \"Runnable\", \"Running\", \"Finalizing\", \"Completed\", \"FailedRestartable\", \"Failed\", \"Aborted\", \"TimedOut\".", sep = ""))
-        }
         self$`status` <- this_object$`status`
       }
       if (!is.null(this_object$`statusDetails`)) {
@@ -170,9 +164,6 @@ UpdateTaskRunStateRequest <- R6::R6Class(
     #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
-      if (!is.null(this_object$`status`) && !(this_object$`status` %in% c("CheckedOut", "Runnable", "Running", "Finalizing", "Completed", "FailedRestartable", "Failed", "Aborted", "TimedOut"))) {
-        stop(paste("Error! \"", this_object$`status`, "\" cannot be assigned to `status`. Must be \"CheckedOut\", \"Runnable\", \"Running\", \"Finalizing\", \"Completed\", \"FailedRestartable\", \"Failed\", \"Aborted\", \"TimedOut\".", sep = ""))
-      }
       self$`status` <- this_object$`status`
       self$`statusDetails` <- this_object$`statusDetails`
       self$`startTime` <- this_object$`startTime`

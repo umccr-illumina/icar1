@@ -24,7 +24,7 @@ library(icar1)
 # Create a workflow
 #
 # prepare function argument(s)
-var_body <- CreateWorkflowRequest$new("name_example", "description_example", "organization_example", CreateWorkflowVersionRequest$new("version_example", "description_example", WorkflowLanguage$new("name_example", "version_example"), 123, c("acl_example"), "draft"), "workflow", c("acl_example"), c("categories_example")) # CreateWorkflowRequest |  (Optional)
+var_body <- CreateWorkflowRequest$new("name_example", "description_example", "organization_example", CreateWorkflowVersionRequest$new("version_example", "description_example", WorkflowLanguage$new("name_example", "version_example"), 123, c("acl_example"), "status_example"), "toolClass_example", c("acl_example"), c("categories_example")) # CreateWorkflowRequest |  (Optional)
 
 api_instance <- WorkflowsApi$new()
 # Configure API key authorization: Bearer
@@ -127,7 +127,7 @@ library(icar1)
 var_tenant_id <- "tenant_id_example" # character | ID of the tenant (Optional)
 var_name <- "name_example" # character |  (Optional)
 var_categories <- c("inner_example") # array[character] |  (Optional)
-var_include <- c("totalItemCount") # array[character] | Comma-separated list of properties to include in the response (Optional)
+var_include <- c("inner_example") # array[character] | Comma-separated list of properties to include in the response (Optional)
 var_page_size <- 10 # integer | Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified. (Optional)
 var_page_token <- "page_token_example" # character | Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified. (Optional)
 var_sort <- "timeCreated asc" # character | Specifies the order to include list items as \"_{fieldName}_ [asc|desc]\". The second field is optional and specifies the sort direction (\"asc\" for ascending or \"desc\" for descending). (Optional)
@@ -144,7 +144,7 @@ Name | Type | Description  | Notes
  **tenant_id** | **character**| ID of the tenant | [optional] 
  **name** | **character**|  | [optional] 
  **categories** | list( **character** )|  | [optional] 
- **include** | Enum [totalItemCount] | Comma-separated list of properties to include in the response | [optional] 
+ **include** | list( **character** )| Comma-separated list of properties to include in the response | [optional] 
  **page_size** | **integer**| Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified. | [optional] [default to 10]
  **page_token** | **character**| Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified. | [optional] 
  **sort** | **character**| Specifies the order to include list items as \&quot;_{fieldName}_ [asc|desc]\&quot;. The second field is optional and specifies the sort direction (\&quot;asc\&quot; for ascending or \&quot;desc\&quot; for descending). | [optional] [default to &quot;timeCreated asc&quot;]

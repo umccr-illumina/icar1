@@ -10,7 +10,7 @@
 #' @field name Name for the volume configuration character
 #' @field versioningEnabled Versioning Enabled or Suspended for the ObjectContainer character [optional]
 #' @field objectStoreSettings  \link{ObjectStoreSettings}
-#' @field restoreType  \link{RestoreType} [optional]
+#' @field restoreType Object Restore Types in Storage Engine character [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -29,7 +29,7 @@ CreateVolumeConfigurationRequest <- R6::R6Class(
     #' @param name Name for the volume configuration
     #' @param objectStoreSettings objectStoreSettings
     #' @param versioningEnabled Versioning Enabled or Suspended for the ObjectContainer
-    #' @param restoreType restoreType
+    #' @param restoreType Object Restore Types in Storage Engine
     #' @param ... Other optional arguments.
     #' @export
     initialize = function(`name`, `objectStoreSettings`, `versioningEnabled` = NULL, `restoreType` = NULL, ...) {
@@ -50,10 +50,9 @@ CreateVolumeConfigurationRequest <- R6::R6Class(
         self$`versioningEnabled` <- `versioningEnabled`
       }
       if (!is.null(`restoreType`)) {
-        if (!(`restoreType` %in% c())) {
-          stop(paste("Error! \"", `restoreType`, "\" cannot be assigned to `restoreType`. Must be .", sep = ""))
+        if (!(is.character(`restoreType`) && length(`restoreType`) == 1)) {
+          stop(paste("Error! Invalid data for `restoreType`. Must be a string:", `restoreType`))
         }
-        stopifnot(R6::is.R6(`restoreType`))
         self$`restoreType` <- `restoreType`
       }
     },
@@ -80,7 +79,7 @@ CreateVolumeConfigurationRequest <- R6::R6Class(
       }
       if (!is.null(self$`restoreType`)) {
         CreateVolumeConfigurationRequestObject[["restoreType"]] <-
-          self$`restoreType`$toJSON()
+          self$`restoreType`
       }
       CreateVolumeConfigurationRequestObject
     },
@@ -106,9 +105,7 @@ CreateVolumeConfigurationRequest <- R6::R6Class(
         self$`objectStoreSettings` <- `objectstoresettings_object`
       }
       if (!is.null(this_object$`restoreType`)) {
-        `restoretype_object` <- RestoreType$new()
-        `restoretype_object`$fromJSON(jsonlite::toJSON(this_object$`restoreType`, auto_unbox = TRUE, digits = NA))
-        self$`restoreType` <- `restoretype_object`
+        self$`restoreType` <- this_object$`restoreType`
       }
       self
     },
@@ -148,9 +145,9 @@ CreateVolumeConfigurationRequest <- R6::R6Class(
         if (!is.null(self$`restoreType`)) {
           sprintf(
           '"restoreType":
-          %s
-          ',
-          jsonlite::toJSON(self$`restoreType`$toJSON(), auto_unbox = TRUE, digits = NA)
+            "%s"
+                    ',
+          self$`restoreType`
           )
         }
       )
@@ -170,7 +167,7 @@ CreateVolumeConfigurationRequest <- R6::R6Class(
       self$`name` <- this_object$`name`
       self$`versioningEnabled` <- this_object$`versioningEnabled`
       self$`objectStoreSettings` <- ObjectStoreSettings$new()$fromJSON(jsonlite::toJSON(this_object$`objectStoreSettings`, auto_unbox = TRUE, digits = NA))
-      self$`restoreType` <- RestoreType$new()$fromJSON(jsonlite::toJSON(this_object$`restoreType`, auto_unbox = TRUE, digits = NA))
+      self$`restoreType` <- this_object$`restoreType`
       self
     },
     #' Validate JSON input with respect to CreateVolumeConfigurationRequest

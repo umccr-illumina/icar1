@@ -56,9 +56,6 @@
             "description": "Comma-separated list of properties to include in the response",
             "type": "array",
             "items": {
-              "enum": [
-                "totalItemCount"
-              ],
               "type": "string"
             }
           },
@@ -330,16 +327,6 @@
             "name": "status",
             "type": "array",
             "items": {
-              "enum": [
-                "aborted",
-                "aborting",
-                "failed",
-                "new",
-                "running",
-                "submitted",
-                "succeeded",
-                "timedOut"
-              ],
               "type": "string"
             }
           },
@@ -360,9 +347,6 @@
             "description": "Comma-separated list of properties to include in the response",
             "type": "array",
             "items": {
-              "enum": [
-                "totalItemCount"
-              ],
               "type": "string"
             }
           },
@@ -447,10 +431,6 @@
             "description": "Comma-separated list of properties to include in the response",
             "type": "array",
             "items": {
-              "enum": [
-                "definition",
-                "engineParameters"
-              ],
               "type": "string"
             }
           }
@@ -526,10 +506,6 @@
             "description": "Comma-separated list of properties to include in the response",
             "type": "array",
             "items": {
-              "enum": [
-                "definition",
-                "engineParameters"
-              ],
               "type": "string"
             }
           },
@@ -612,9 +588,6 @@
             "description": "Comma-separated list of properties to include in the response",
             "type": "array",
             "items": {
-              "enum": [
-                "totalItemCount"
-              ],
               "type": "string"
             }
           },
@@ -757,9 +730,6 @@
             "description": "Comma-separated list of properties to include in the response",
             "type": "array",
             "items": {
-              "enum": [
-                "totalItemCount"
-              ],
               "type": "string"
             }
           },
@@ -1153,9 +1123,6 @@
             "description": "Comma-separated list of properties to include in the response",
             "type": "array",
             "items": {
-              "enum": [
-                "totalItemCount"
-              ],
               "type": "string"
             }
           },
@@ -1313,9 +1280,6 @@
             "description": "Comma-separated list of properties to include in the response",
             "type": "array",
             "items": {
-              "enum": [
-                "totalItemCount"
-              ],
               "type": "string"
             }
           },
@@ -1410,10 +1374,6 @@
             "description": "Comma-separated list of properties to include in the response",
             "type": "array",
             "items": {
-              "enum": [
-                "definition",
-                "engineParameters"
-              ],
               "type": "string"
             }
           },
@@ -2971,31 +2931,19 @@
             "in": "query",
             "name": "volume.id",
             "description": "Optional field that specifies comma-separated volume IDs to include in the list",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "csv"
+            "type": "string"
           },
           {
             "in": "query",
             "name": "volume.name",
             "description": "Optional field that specifies comma-separated volume names to include in the list",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "csv"
+            "type": "string"
           },
           {
             "in": "query",
             "name": "path",
             "description": "Optional field that specifies comma-separated paths to include in the list. Value can use wildcards (e.g. /a/b/c/*) or exact matches (e.g. /a/b/c/d/).",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "csv"
+            "type": "string"
           },
           {
             "in": "query",
@@ -5805,10 +5753,6 @@
           "$ref": "#/definitions/CreateWorkflowVersionRequest"
         },
         "toolClass": {
-          "enum": [
-            "workflow",
-            "commandLineTool"
-          ],
           "type": "string"
         },
         "acl": {
@@ -5853,11 +5797,6 @@
         },
         "status": {
           "description": "Published Status of the workflow version",
-          "enum": [
-            "draft",
-            "released",
-            "obsolete"
-          ],
           "type": "string"
         }
       }
@@ -5976,11 +5915,6 @@
         },
         "status": {
           "description": "New Status for workflow version",
-          "enum": [
-            "draft",
-            "released",
-            "obsolete"
-          ],
           "type": "string"
         }
       }
@@ -7763,10 +7697,6 @@
       "properties": {
         "computeType": {
           "description": "Type of the compute requested (Fpga and NonFpga)",
-          "enum": [
-            "Fpga",
-            "NonFpga"
-          ],
           "type": "string"
         }
       }
@@ -8011,17 +7941,6 @@
       "properties": {
         "status": {
           "description": "New TaskRun status to be updated",
-          "enum": [
-            "CheckedOut",
-            "Runnable",
-            "Running",
-            "Finalizing",
-            "Completed",
-            "FailedRestartable",
-            "Failed",
-            "Aborted",
-            "TimedOut"
-          ],
           "type": "string"
         },
         "statusDetails": {
@@ -8607,11 +8526,6 @@
     },
     "ArchiveStatuses": {
       "description": "The valid Archive Status values for files in GDS",
-      "enum": [
-        "None",
-        "Archived",
-        "Unarchiving"
-      ],
       "type": "string"
     },
     "AwsS3PresignedUrlForUpload": {
@@ -9227,10 +9141,6 @@
       }
     },
     "FileArchiveStorageTier": {
-      "enum": [
-        "Archive",
-        "DeepArchive"
-      ],
       "type": "string"
     },
     "FileCopyOperationParameters": {
@@ -9520,13 +9430,6 @@
       }
     },
     "FileStatus": {
-      "enum": [
-        "Partial",
-        "Available",
-        "Archived",
-        "Unarchiving",
-        "Copying"
-      ],
       "type": "string"
     },
     "FileUnarchiveRequest": {
@@ -9693,10 +9596,6 @@
       }
     },
     "FolderArchiveStorageTier": {
-      "enum": [
-        "Archive",
-        "DeepArchive"
-      ],
       "type": "string"
     },
     "FolderCopyOperationParameters": {
@@ -10048,12 +9947,6 @@
       }
     },
     "GracePeriodEndAction": {
-      "enum": [
-        "None",
-        "Archive",
-        "DeepArchive",
-        "Delete"
-      ],
       "type": "string"
     },
     "JobListResponse": {
@@ -10122,13 +10015,6 @@
     },
     "JobOperationType": {
       "description": "The valid job operation type values for resources in GDS\r\nIMPORTANT - Please consider backward compatibility before adding a new enum value. Adding a new enum value will break the existing client using swagger SDK",
-      "enum": [
-        "Unknown",
-        "FolderArchive",
-        "FolderUnarchive",
-        "FolderDelete",
-        "FolderCopy"
-      ],
       "type": "string"
     },
     "JobOutput": {
@@ -10150,14 +10036,6 @@
     },
     "JobProgressStatus": {
       "description": "The valid Job Status values for folders in GDS.\r\nIMPORTANT - Please consider backward compatibility before adding a new enum value. Adding a new enum value will break the existing client using swagger SDK",
-      "enum": [
-        "Pending",
-        "InProgress",
-        "Completed",
-        "Failed",
-        "CompletedWithError",
-        "Aborted"
-      ],
       "type": "string"
     },
     "JobResponse": {
@@ -10209,12 +10087,6 @@
     },
     "JobStatus": {
       "description": "This enum was originally created to store the type of job on a folder or file entity. \r\nThe Job entity is now used to track this information for copy operations, with the Illumina.Gds.Api.Models.Enums.JobOperationType \r\nand Illumina.Gds.Api.Models.Enums.JobProgressStatus used to record the type and progress status of the job.\r\nIMPORTANT - Please consider backward compatibility before adding a new enum value. Adding a new enum value will break the existing client using swagger SDK",
-      "enum": [
-        "None",
-        "Archiving",
-        "Unarchiving",
-        "Deleting"
-      ],
       "type": "string"
     },
     "MetadataUpdateOutput": {
@@ -10327,10 +10199,6 @@
     },
     "RestoreType": {
       "description": "Object Restore Types in Storage Engine",
-      "enum": [
-        "Permanent",
-        "Temporary"
-      ],
       "type": "string"
     },
     "SessionResponse": {
@@ -10371,22 +10239,10 @@
       }
     },
     "SessionStatus": {
-      "enum": [
-        "Open",
-        "Closed",
-        "Completed",
-        "CompletedWithError"
-      ],
       "type": "string"
     },
     "StorageTier": {
       "description": "StorageTier",
-      "enum": [
-        "None",
-        "Standard",
-        "Archive",
-        "DeepArchive"
-      ],
       "type": "string"
     },
     "UpdateFileRequest": {
@@ -10468,11 +10324,6 @@
     },
     "VolumeConfigurationOnlineStatus": {
       "description": "The valid Online Status values for Volume configurations in GDS",
-      "enum": [
-        "Initializing",
-        "Ok",
-        "Error"
-      ],
       "type": "string"
     },
     "VolumeConfigurationResponse": {
@@ -10875,10 +10726,6 @@
       "additionalProperties": false
     },
     "SortDirection": {
-      "enum": [
-        "Asc",
-        "Desc"
-      ],
       "type": "string"
     },
     "Subscription": {
@@ -11005,9 +10852,6 @@
       "additionalProperties": false
     },
     "SubscriptionListSortFields": {
-      "enum": [
-        "id"
-      ],
       "type": "string"
     }
   }

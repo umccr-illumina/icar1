@@ -855,7 +855,7 @@
 #'
 #' library(icar1)
 #' var_folder_id <- "folder_id_example" # character | Unique identifier for the folder to be archived.
-#' var_body <- FolderArchiveRequest$new(FolderArchiveStorageTier$new()) # FolderArchiveRequest | 
+#' var_body <- FolderArchiveRequest$new("storageTier_example") # FolderArchiveRequest | 
 #'
 #' #Archive a folder
 #' api_instance <- FoldersApi$new()

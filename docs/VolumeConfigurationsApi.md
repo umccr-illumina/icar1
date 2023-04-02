@@ -25,7 +25,7 @@ library(icar1)
 # Create a volume configuration in GDS.
 #
 # prepare function argument(s)
-var_body <- CreateVolumeConfigurationRequest$new("name_example", ObjectStoreSettings$new(AWSS3ObjectStoreSetting$new("bucketName_example", "keyPrefix_example", "serverSideEncryptionAlgorithm_example", "serverSideEncryptionKey_example"), "secretName_example", "secretId_example"), "versioningEnabled_example", RestoreType$new()) # CreateVolumeConfigurationRequest | 
+var_body <- CreateVolumeConfigurationRequest$new("name_example", ObjectStoreSettings$new(AWSS3ObjectStoreSetting$new("bucketName_example", "keyPrefix_example", "serverSideEncryptionAlgorithm_example", "serverSideEncryptionKey_example"), "secretName_example", "secretId_example"), "versioningEnabled_example", "restoreType_example") # CreateVolumeConfigurationRequest | 
 
 api_instance <- VolumeConfigurationsApi$new()
 # Configure API key authorization: Bearer

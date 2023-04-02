@@ -15,8 +15,8 @@
 #' @field lastPageToken  character [optional]
 #' @field totalItemCount  integer [optional]
 #' @field totalPageCount  integer [optional]
-#' @field sortedBy  \link{SubscriptionListSortFields} [optional]
-#' @field sortDirection  \link{SortDirection} [optional]
+#' @field sortedBy  character [optional]
+#' @field sortDirection  character [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -99,17 +99,15 @@ SubscriptionList <- R6::R6Class(
         self$`totalPageCount` <- `totalPageCount`
       }
       if (!is.null(`sortedBy`)) {
-        if (!(`sortedBy` %in% c())) {
-          stop(paste("Error! \"", `sortedBy`, "\" cannot be assigned to `sortedBy`. Must be .", sep = ""))
+        if (!(is.character(`sortedBy`) && length(`sortedBy`) == 1)) {
+          stop(paste("Error! Invalid data for `sortedBy`. Must be a string:", `sortedBy`))
         }
-        stopifnot(R6::is.R6(`sortedBy`))
         self$`sortedBy` <- `sortedBy`
       }
       if (!is.null(`sortDirection`)) {
-        if (!(`sortDirection` %in% c())) {
-          stop(paste("Error! \"", `sortDirection`, "\" cannot be assigned to `sortDirection`. Must be .", sep = ""))
+        if (!(is.character(`sortDirection`) && length(`sortDirection`) == 1)) {
+          stop(paste("Error! Invalid data for `sortDirection`. Must be a string:", `sortDirection`))
         }
-        stopifnot(R6::is.R6(`sortDirection`))
         self$`sortDirection` <- `sortDirection`
       }
     },
@@ -156,11 +154,11 @@ SubscriptionList <- R6::R6Class(
       }
       if (!is.null(self$`sortedBy`)) {
         SubscriptionListObject[["sortedBy"]] <-
-          self$`sortedBy`$toJSON()
+          self$`sortedBy`
       }
       if (!is.null(self$`sortDirection`)) {
         SubscriptionListObject[["sortDirection"]] <-
-          self$`sortDirection`$toJSON()
+          self$`sortDirection`
       }
       SubscriptionListObject
     },
@@ -199,14 +197,10 @@ SubscriptionList <- R6::R6Class(
         self$`totalPageCount` <- this_object$`totalPageCount`
       }
       if (!is.null(this_object$`sortedBy`)) {
-        `sortedby_object` <- SubscriptionListSortFields$new()
-        `sortedby_object`$fromJSON(jsonlite::toJSON(this_object$`sortedBy`, auto_unbox = TRUE, digits = NA))
-        self$`sortedBy` <- `sortedby_object`
+        self$`sortedBy` <- this_object$`sortedBy`
       }
       if (!is.null(this_object$`sortDirection`)) {
-        `sortdirection_object` <- SortDirection$new()
-        `sortdirection_object`$fromJSON(jsonlite::toJSON(this_object$`sortDirection`, auto_unbox = TRUE, digits = NA))
-        self$`sortDirection` <- `sortdirection_object`
+        self$`sortDirection` <- this_object$`sortDirection`
       }
       self
     },
@@ -286,17 +280,17 @@ SubscriptionList <- R6::R6Class(
         if (!is.null(self$`sortedBy`)) {
           sprintf(
           '"sortedBy":
-          %s
-          ',
-          jsonlite::toJSON(self$`sortedBy`$toJSON(), auto_unbox = TRUE, digits = NA)
+            "%s"
+                    ',
+          self$`sortedBy`
           )
         },
         if (!is.null(self$`sortDirection`)) {
           sprintf(
           '"sortDirection":
-          %s
-          ',
-          jsonlite::toJSON(self$`sortDirection`$toJSON(), auto_unbox = TRUE, digits = NA)
+            "%s"
+                    ',
+          self$`sortDirection`
           )
         }
       )
@@ -321,8 +315,8 @@ SubscriptionList <- R6::R6Class(
       self$`lastPageToken` <- this_object$`lastPageToken`
       self$`totalItemCount` <- this_object$`totalItemCount`
       self$`totalPageCount` <- this_object$`totalPageCount`
-      self$`sortedBy` <- SubscriptionListSortFields$new()$fromJSON(jsonlite::toJSON(this_object$`sortedBy`, auto_unbox = TRUE, digits = NA))
-      self$`sortDirection` <- SortDirection$new()$fromJSON(jsonlite::toJSON(this_object$`sortDirection`, auto_unbox = TRUE, digits = NA))
+      self$`sortedBy` <- this_object$`sortedBy`
+      self$`sortDirection` <- this_object$`sortDirection`
       self
     },
     #' Validate JSON input with respect to SubscriptionList

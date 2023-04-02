@@ -27,3 +27,5 @@ DESCRIPTION
 .travis.yml
 git_push.sh
 README.md
+.github/workflows/r-client.yaml
+.lintr

@@ -126,7 +126,7 @@
 #' \item \emph{ @param } tenant_id character
 #' \item \emph{ @param } name character
 #' \item \emph{ @param } categories list( character )
-#' \item \emph{ @param } include Enum < [totalItemCount] >
+#' \item \emph{ @param } include list( character )
 #' \item \emph{ @param } page_size integer
 #' \item \emph{ @param } page_token character
 #' \item \emph{ @param } sort character
@@ -240,7 +240,7 @@
 #' ####################  CreateWorkflow  ####################
 #'
 #' library(icar1)
-#' var_body <- CreateWorkflowRequest$new("name_example", "description_example", "organization_example", CreateWorkflowVersionRequest$new("version_example", "description_example", WorkflowLanguage$new("name_example", "version_example"), 123, c("acl_example"), "draft"), "workflow", c("acl_example"), c("categories_example")) # CreateWorkflowRequest |  (Optional)
+#' var_body <- CreateWorkflowRequest$new("name_example", "description_example", "organization_example", CreateWorkflowVersionRequest$new("version_example", "description_example", WorkflowLanguage$new("name_example", "version_example"), 123, c("acl_example"), "status_example"), "toolClass_example", c("acl_example"), c("categories_example")) # CreateWorkflowRequest |  (Optional)
 #'
 #' #Create a workflow
 #' api_instance <- WorkflowsApi$new()
@@ -269,7 +269,7 @@
 #' var_tenant_id <- "tenant_id_example" # character | ID of the tenant (Optional)
 #' var_name <- "name_example" # character |  (Optional)
 #' var_categories <- c("inner_example") # array[character] |  (Optional)
-#' var_include <- c("totalItemCount") # array[character] | Comma-separated list of properties to include in the response (Optional)
+#' var_include <- c("inner_example") # array[character] | Comma-separated list of properties to include in the response (Optional)
 #' var_page_size <- 10 # integer | Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified. (Optional)
 #' var_page_token <- "page_token_example" # character | Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified. (Optional)
 #' var_sort <- "timeCreated asc" # character | Specifies the order to include list items as \"_{fieldName}_ [asc|desc]\". The second field is optional and specifies the sort direction (\"asc\" for ascending or \"desc\" for descending). (Optional)
@@ -595,15 +595,6 @@ WorkflowsApi <- R6::R6Class(
       query_params[["categories"]] <- I(paste(lapply(`categories`, URLencode, reserved = TRUE), collapse = ","))
 
       # no explore
-      # validate enum values
-      for (query_item in `include`) {
-        if (!(query_item %in% c("totalItemCount"))) {
-          rlang::abort(message = "Invalid value for `include` when calling WorkflowsApi$ListWorkflows. Must be [totalItemCount].",
-                       .subclass = "ApiException",
-                       ApiException = ApiException$new(status = 0,
-                                                       reason = "Invalid value for `include` when calling WorkflowsApi$ListWorkflows. Must be [totalItemCount]."))
-        }
-      }
       query_params[["include"]] <- I(paste(lapply(`include`, URLencode, reserved = TRUE), collapse = ","))
 
       query_params[["pageSize"]] <- `page_size`

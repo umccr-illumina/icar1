@@ -64,9 +64,6 @@ UpdateWorkflowVersionRequest <- R6::R6Class(
         self$`acl` <- `acl`
       }
       if (!is.null(`status`)) {
-        if (!(`status` %in% c("draft", "released", "obsolete"))) {
-          stop(paste("Error! \"", `status`, "\" cannot be assigned to `status`. Must be \"draft\", \"released\", \"obsolete\".", sep = ""))
-        }
         if (!(is.character(`status`) && length(`status`) == 1)) {
           stop(paste("Error! Invalid data for `status`. Must be a string:", `status`))
         }
@@ -136,9 +133,6 @@ UpdateWorkflowVersionRequest <- R6::R6Class(
         self$`acl` <- ApiClient$new()$deserializeObj(this_object$`acl`, "array[character]", loadNamespace("icar1"))
       }
       if (!is.null(this_object$`status`)) {
-        if (!is.null(this_object$`status`) && !(this_object$`status` %in% c("draft", "released", "obsolete"))) {
-          stop(paste("Error! \"", this_object$`status`, "\" cannot be assigned to `status`. Must be \"draft\", \"released\", \"obsolete\".", sep = ""))
-        }
         self$`status` <- this_object$`status`
       }
       self
@@ -219,9 +213,6 @@ UpdateWorkflowVersionRequest <- R6::R6Class(
       self$`language` <- WorkflowLanguage$new()$fromJSON(jsonlite::toJSON(this_object$`language`, auto_unbox = TRUE, digits = NA))
       self$`definition` <- this_object$`definition`
       self$`acl` <- ApiClient$new()$deserializeObj(this_object$`acl`, "array[character]", loadNamespace("icar1"))
-      if (!is.null(this_object$`status`) && !(this_object$`status` %in% c("draft", "released", "obsolete"))) {
-        stop(paste("Error! \"", this_object$`status`, "\" cannot be assigned to `status`. Must be \"draft\", \"released\", \"obsolete\".", sep = ""))
-      }
       self$`status` <- this_object$`status`
       self
     },

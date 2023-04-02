@@ -397,9 +397,9 @@
 #' Given a volumeId or volume name, get a list of files accessible by the JWT. The default sort returned is alphabetical, ascending. The default page size is 10 items
 #'
 #' \itemize{
-#' \item \emph{ @param } volume_id list( character )
-#' \item \emph{ @param } volume_name list( character )
-#' \item \emph{ @param } path list( character )
+#' \item \emph{ @param } volume_id character
+#' \item \emph{ @param } volume_name character
+#' \item \emph{ @param } path character
 #' \item \emph{ @param } is_uploaded character
 #' \item \emph{ @param } archive_status character
 #' \item \emph{ @param } recursive character
@@ -623,7 +623,7 @@
 #'
 #' library(icar1)
 #' var_file_id <- "file_id_example" # character | Unique identifier for the file to be archived.
-#' var_body <- FileArchiveRequest$new(FileArchiveStorageTier$new()) # FileArchiveRequest | 
+#' var_body <- FileArchiveRequest$new("storageTier_example") # FileArchiveRequest | 
 #'
 #' #Archive a file
 #' api_instance <- FilesApi$new()
@@ -636,7 +636,7 @@
 #' ####################  BulkFileUpdate  ####################
 #'
 #' library(icar1)
-#' var_body <- BulkFileUpdateRequest$new(c(BulkFileUpdateItem$new("id_example", 123, "format_example", "formatEdam_example", FileLifeCycleSettings$new("timeGracePeriodEnds_example", "timeToBeArchived_example", "timeToBeDeleted_example", FileArchiveStorageTier$new()))), 123) # BulkFileUpdateRequest |  (Optional)
+#' var_body <- BulkFileUpdateRequest$new(c(BulkFileUpdateItem$new("id_example", 123, "format_example", "formatEdam_example", FileLifeCycleSettings$new("timeGracePeriodEnds_example", "timeToBeArchived_example", "timeToBeDeleted_example", "archiveStorageTier_example"))), 123) # BulkFileUpdateRequest |  (Optional)
 #'
 #' #Updates list of files with metadata
 #' api_instance <- FilesApi$new()
@@ -723,9 +723,9 @@
 #' ####################  ListFiles  ####################
 #'
 #' library(icar1)
-#' var_volume_id <- c("inner_example") # array[character] | Optional field that specifies comma-separated volume IDs to include in the list (Optional)
-#' var_volume_name <- c("inner_example") # array[character] | Optional field that specifies comma-separated volume names to include in the list (Optional)
-#' var_path <- c("inner_example") # array[character] | Optional field that specifies comma-separated paths to include in the list. Value can use wildcards (e.g. /a/b/c/*) or exact matches (e.g. /a/b/c/d/). (Optional)
+#' var_volume_id <- "volume_id_example" # character | Optional field that specifies comma-separated volume IDs to include in the list (Optional)
+#' var_volume_name <- "volume_name_example" # character | Optional field that specifies comma-separated volume names to include in the list (Optional)
+#' var_path <- "path_example" # character | Optional field that specifies comma-separated paths to include in the list. Value can use wildcards (e.g. /a/b/c/*) or exact matches (e.g. /a/b/c/d/). (Optional)
 #' var_is_uploaded <- "is_uploaded_example" # character | Optional field to filter by Uploaded files (Optional)
 #' var_archive_status <- "archive_status_example" # character | Optional field that specifies comma-separated Archive Statuses to include in the list (Optional)
 #' var_recursive <- "recursive_example" # character | Optional field to specify if files should be returned recursively in and under the specified paths, or only directly in the specified paths (Optional)
@@ -778,7 +778,7 @@
 #' var_file_id <- "file_id_example" # character | Unique identifier for the file to be updated.
 #' var_include <- "include_example" # character | Optionally include additional fields in the response.              Possible values: ObjectStoreAccess (Optional)
 #' var_upload_part_count <- 56 # integer | Optional number of parts for the presigned url for uploads (1 - 10000) (Optional)
-#' var_body <- UpdateFileRequest$new("type_example", "format_example", "formatEdam_example", FileLifeCycleSettings$new("timeGracePeriodEnds_example", "timeToBeArchived_example", "timeToBeDeleted_example", FileArchiveStorageTier$new()), 123) # UpdateFileRequest |  (Optional)
+#' var_body <- UpdateFileRequest$new("type_example", "format_example", "formatEdam_example", FileLifeCycleSettings$new("timeGracePeriodEnds_example", "timeToBeArchived_example", "timeToBeDeleted_example", "archiveStorageTier_example"), 123) # UpdateFileRequest |  (Optional)
 #'
 #' #Update a file entry in GDS and get temporary credentials for upload
 #' api_instance <- FilesApi$new()
@@ -1712,14 +1712,11 @@ FilesApi <- R6::R6Class(
 
 
 
-      # no explore
-      query_params[["volume.id"]] <- I(paste(lapply(`volume_id`, URLencode, reserved = TRUE), collapse = ","))
+      query_params[["volume.id"]] <- `volume_id`
 
-      # no explore
-      query_params[["volume.name"]] <- I(paste(lapply(`volume_name`, URLencode, reserved = TRUE), collapse = ","))
+      query_params[["volume.name"]] <- `volume_name`
 
-      # no explore
-      query_params[["path"]] <- I(paste(lapply(`path`, URLencode, reserved = TRUE), collapse = ","))
+      query_params[["path"]] <- `path`
 
       query_params[["isUploaded"]] <- `is_uploaded`
 

@@ -32,7 +32,7 @@ library(icar1)
 #
 # prepare function argument(s)
 var_file_id <- "file_id_example" # character | Unique identifier for the file to be archived.
-var_body <- FileArchiveRequest$new(FileArchiveStorageTier$new()) # FileArchiveRequest | 
+var_body <- FileArchiveRequest$new("storageTier_example") # FileArchiveRequest | 
 
 api_instance <- FilesApi$new()
 # Configure API key authorization: Bearer
@@ -83,7 +83,7 @@ library(icar1)
 # Updates list of files with metadata
 #
 # prepare function argument(s)
-var_body <- BulkFileUpdateRequest$new(c(BulkFileUpdateItem$new("id_example", 123, "format_example", "formatEdam_example", FileLifeCycleSettings$new("timeGracePeriodEnds_example", "timeToBeArchived_example", "timeToBeDeleted_example", FileArchiveStorageTier$new()))), 123) # BulkFileUpdateRequest |  (Optional)
+var_body <- BulkFileUpdateRequest$new(c(BulkFileUpdateItem$new("id_example", 123, "format_example", "formatEdam_example", FileLifeCycleSettings$new("timeGracePeriodEnds_example", "timeToBeArchived_example", "timeToBeDeleted_example", "archiveStorageTier_example"))), 123) # BulkFileUpdateRequest |  (Optional)
 
 api_instance <- FilesApi$new()
 # Configure API key authorization: Bearer
@@ -401,9 +401,9 @@ library(icar1)
 # Get a list of files
 #
 # prepare function argument(s)
-var_volume_id <- c("inner_example") # array[character] | Optional field that specifies comma-separated volume IDs to include in the list (Optional)
-var_volume_name <- c("inner_example") # array[character] | Optional field that specifies comma-separated volume names to include in the list (Optional)
-var_path <- c("inner_example") # array[character] | Optional field that specifies comma-separated paths to include in the list. Value can use wildcards (e.g. /a/b/c/*) or exact matches (e.g. /a/b/c/d/). (Optional)
+var_volume_id <- "volume_id_example" # character | Optional field that specifies comma-separated volume IDs to include in the list (Optional)
+var_volume_name <- "volume_name_example" # character | Optional field that specifies comma-separated volume names to include in the list (Optional)
+var_path <- "path_example" # character | Optional field that specifies comma-separated paths to include in the list. Value can use wildcards (e.g. /a/b/c/*) or exact matches (e.g. /a/b/c/d/). (Optional)
 var_is_uploaded <- "is_uploaded_example" # character | Optional field to filter by Uploaded files (Optional)
 var_archive_status <- "archive_status_example" # character | Optional field that specifies comma-separated Archive Statuses to include in the list (Optional)
 var_recursive <- "recursive_example" # character | Optional field to specify if files should be returned recursively in and under the specified paths, or only directly in the specified paths (Optional)
@@ -424,9 +424,9 @@ api_instance$api_client$api_keys["Authorization"] <- Sys.getenv("API_KEY")
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **volume_id** | list( **character** )| Optional field that specifies comma-separated volume IDs to include in the list | [optional] 
- **volume_name** | list( **character** )| Optional field that specifies comma-separated volume names to include in the list | [optional] 
- **path** | list( **character** )| Optional field that specifies comma-separated paths to include in the list. Value can use wildcards (e.g. /a/b/c/*) or exact matches (e.g. /a/b/c/d/). | [optional] 
+ **volume_id** | **character**| Optional field that specifies comma-separated volume IDs to include in the list | [optional] 
+ **volume_name** | **character**| Optional field that specifies comma-separated volume names to include in the list | [optional] 
+ **path** | **character**| Optional field that specifies comma-separated paths to include in the list. Value can use wildcards (e.g. /a/b/c/*) or exact matches (e.g. /a/b/c/d/). | [optional] 
  **is_uploaded** | **character**| Optional field to filter by Uploaded files | [optional] 
  **archive_status** | **character**| Optional field that specifies comma-separated Archive Statuses to include in the list | [optional] 
  **recursive** | **character**| Optional field to specify if files should be returned recursively in and under the specified paths, or only directly in the specified paths | [optional] 
@@ -579,7 +579,7 @@ library(icar1)
 var_file_id <- "file_id_example" # character | Unique identifier for the file to be updated.
 var_include <- "include_example" # character | Optionally include additional fields in the response.              Possible values: ObjectStoreAccess (Optional)
 var_upload_part_count <- 56 # integer | Optional number of parts for the presigned url for uploads (1 - 10000) (Optional)
-var_body <- UpdateFileRequest$new("type_example", "format_example", "formatEdam_example", FileLifeCycleSettings$new("timeGracePeriodEnds_example", "timeToBeArchived_example", "timeToBeDeleted_example", FileArchiveStorageTier$new()), 123) # UpdateFileRequest |  (Optional)
+var_body <- UpdateFileRequest$new("type_example", "format_example", "formatEdam_example", FileLifeCycleSettings$new("timeGracePeriodEnds_example", "timeToBeArchived_example", "timeToBeDeleted_example", "archiveStorageTier_example"), 123) # UpdateFileRequest |  (Optional)
 
 api_instance <- FilesApi$new()
 # Configure API key authorization: Bearer

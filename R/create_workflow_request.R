@@ -65,9 +65,6 @@ CreateWorkflowRequest <- R6::R6Class(
         self$`workflowVersion` <- `workflowVersion`
       }
       if (!is.null(`toolClass`)) {
-        if (!(`toolClass` %in% c("workflow", "commandLineTool"))) {
-          stop(paste("Error! \"", `toolClass`, "\" cannot be assigned to `toolClass`. Must be \"workflow\", \"commandLineTool\".", sep = ""))
-        }
         if (!(is.character(`toolClass`) && length(`toolClass`) == 1)) {
           stop(paste("Error! Invalid data for `toolClass`. Must be a string:", `toolClass`))
         }
@@ -148,9 +145,6 @@ CreateWorkflowRequest <- R6::R6Class(
         self$`workflowVersion` <- `workflowversion_object`
       }
       if (!is.null(this_object$`toolClass`)) {
-        if (!is.null(this_object$`toolClass`) && !(this_object$`toolClass` %in% c("workflow", "commandLineTool"))) {
-          stop(paste("Error! \"", this_object$`toolClass`, "\" cannot be assigned to `toolClass`. Must be \"workflow\", \"commandLineTool\".", sep = ""))
-        }
         self$`toolClass` <- this_object$`toolClass`
       }
       if (!is.null(this_object$`acl`)) {
@@ -244,9 +238,6 @@ CreateWorkflowRequest <- R6::R6Class(
       self$`description` <- this_object$`description`
       self$`organization` <- this_object$`organization`
       self$`workflowVersion` <- CreateWorkflowVersionRequest$new()$fromJSON(jsonlite::toJSON(this_object$`workflowVersion`, auto_unbox = TRUE, digits = NA))
-      if (!is.null(this_object$`toolClass`) && !(this_object$`toolClass` %in% c("workflow", "commandLineTool"))) {
-        stop(paste("Error! \"", this_object$`toolClass`, "\" cannot be assigned to `toolClass`. Must be \"workflow\", \"commandLineTool\".", sep = ""))
-      }
       self$`toolClass` <- this_object$`toolClass`
       self$`acl` <- ApiClient$new()$deserializeObj(this_object$`acl`, "array[character]", loadNamespace("icar1"))
       self$`categories` <- ApiClient$new()$deserializeObj(this_object$`categories`, "array[character]", loadNamespace("icar1"))

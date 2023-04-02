@@ -127,7 +127,7 @@
 #' \itemize{
 #' \item \emph{ @param } workflow_id character
 #' \item \emph{ @param } version_name character
-#' \item \emph{ @param } include Enum < [definition, engineParameters] >
+#' \item \emph{ @param } include list( character )
 #' \item \emph{ @param } body \link{LaunchWorkflowVersionRequest}
 #' \item \emph{ @returnType } \link{WorkflowRun} \cr
 #'
@@ -175,7 +175,7 @@
 #'
 #' \itemize{
 #' \item \emph{ @param } tenant_id character
-#' \item \emph{ @param } include Enum < [totalItemCount] >
+#' \item \emph{ @param } include list( character )
 #' \item \emph{ @param } page_size integer
 #' \item \emph{ @param } page_token character
 #' \item \emph{ @param } sort character
@@ -225,7 +225,7 @@
 #'
 #' \itemize{
 #' \item \emph{ @param } workflow_id character
-#' \item \emph{ @param } include Enum < [totalItemCount] >
+#' \item \emph{ @param } include list( character )
 #' \item \emph{ @param } page_size integer
 #' \item \emph{ @param } page_token character
 #' \item \emph{ @param } sort character
@@ -348,7 +348,7 @@
 #'
 #' library(icar1)
 #' var_workflow_id <- "workflow_id_example" # character | ID of the workflow
-#' var_body <- CreateWorkflowVersionRequest$new("version_example", "description_example", WorkflowLanguage$new("name_example", "version_example"), 123, c("acl_example"), "draft") # CreateWorkflowVersionRequest |  (Optional)
+#' var_body <- CreateWorkflowVersionRequest$new("version_example", "description_example", WorkflowLanguage$new("name_example", "version_example"), 123, c("acl_example"), "status_example") # CreateWorkflowVersionRequest |  (Optional)
 #'
 #' #Create a new workflow version
 #' api_instance <- WorkflowVersionsApi$new()
@@ -377,7 +377,7 @@
 #' library(icar1)
 #' var_workflow_id <- "workflow_id_example" # character | ID of the workflow
 #' var_version_name <- "version_name_example" # character | Name of the workflow version
-#' var_include <- c("definition") # array[character] | Comma-separated list of properties to include in the response (Optional)
+#' var_include <- c("inner_example") # array[character] | Comma-separated list of properties to include in the response (Optional)
 #' var_body <- LaunchWorkflowVersionRequest$new("name_example", 123, 123) # LaunchWorkflowVersionRequest |  (Optional)
 #'
 #' #Launch a workflow version
@@ -392,7 +392,7 @@
 #'
 #' library(icar1)
 #' var_tenant_id <- "tenant_id_example" # character | ID of the tenant (Optional)
-#' var_include <- c("totalItemCount") # array[character] | Comma-separated list of properties to include in the response (Optional)
+#' var_include <- c("inner_example") # array[character] | Comma-separated list of properties to include in the response (Optional)
 #' var_page_size <- 10 # integer | Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified. (Optional)
 #' var_page_token <- "page_token_example" # character | Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified. (Optional)
 #' var_sort <- "timeCreated asc" # character | Specifies the order to include list items as \"_{fieldName}_ [asc|desc]\". The second field is optional and specifies the sort direction (\"asc\" for ascending or \"desc\" for descending). (Optional)
@@ -409,7 +409,7 @@
 #'
 #' library(icar1)
 #' var_workflow_id <- "workflow_id_example" # character | ID of the workflow
-#' var_include <- c("totalItemCount") # array[character] | Comma-separated list of properties to include in the response (Optional)
+#' var_include <- c("inner_example") # array[character] | Comma-separated list of properties to include in the response (Optional)
 #' var_page_size <- 10 # integer | Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified. (Optional)
 #' var_page_token <- "page_token_example" # character | Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified. (Optional)
 #' var_sort <- "timeCreated asc" # character | Specifies the order to include list items as \"_{fieldName}_ [asc|desc]\". The second field is optional and specifies the sort direction (\"asc\" for ascending or \"desc\" for descending). (Optional)
@@ -427,7 +427,7 @@
 #' library(icar1)
 #' var_workflow_id <- "workflow_id_example" # character | ID of the workflow
 #' var_version_name <- "version_name_example" # character | Name of the workflow version
-#' var_body <- UpdateWorkflowVersionRequest$new("version_example", "description_example", WorkflowLanguage$new("name_example", "version_example"), 123, c("acl_example"), "draft") # UpdateWorkflowVersionRequest |  (Optional)
+#' var_body <- UpdateWorkflowVersionRequest$new("version_example", "description_example", WorkflowLanguage$new("name_example", "version_example"), 123, c("acl_example"), "status_example") # UpdateWorkflowVersionRequest |  (Optional)
 #'
 #' #Update an existing workflow version
 #' api_instance <- WorkflowVersionsApi$new()
@@ -762,15 +762,6 @@ WorkflowVersionsApi <- R6::R6Class(
 
 
       # no explore
-      # validate enum values
-      for (query_item in `include`) {
-        if (!(query_item %in% c("definition", "engineParameters"))) {
-          rlang::abort(message = "Invalid value for `include` when calling WorkflowVersionsApi$LaunchWorkflowVersion. Must be [definition, engineParameters].",
-                       .subclass = "ApiException",
-                       ApiException = ApiException$new(status = 0,
-                                                       reason = "Invalid value for `include` when calling WorkflowVersionsApi$LaunchWorkflowVersion. Must be [definition, engineParameters]."))
-        }
-      }
       query_params[["include"]] <- I(paste(lapply(`include`, URLencode, reserved = TRUE), collapse = ","))
 
       if (!is.null(`body`)) {
@@ -897,15 +888,6 @@ WorkflowVersionsApi <- R6::R6Class(
       query_params[["tenantId"]] <- `tenant_id`
 
       # no explore
-      # validate enum values
-      for (query_item in `include`) {
-        if (!(query_item %in% c("totalItemCount"))) {
-          rlang::abort(message = "Invalid value for `include` when calling WorkflowVersionsApi$ListAllWorkflowVersions. Must be [totalItemCount].",
-                       .subclass = "ApiException",
-                       ApiException = ApiException$new(status = 0,
-                                                       reason = "Invalid value for `include` when calling WorkflowVersionsApi$ListAllWorkflowVersions. Must be [totalItemCount]."))
-        }
-      }
       query_params[["include"]] <- I(paste(lapply(`include`, URLencode, reserved = TRUE), collapse = ","))
 
       query_params[["pageSize"]] <- `page_size`
@@ -1029,15 +1011,6 @@ WorkflowVersionsApi <- R6::R6Class(
 
 
       # no explore
-      # validate enum values
-      for (query_item in `include`) {
-        if (!(query_item %in% c("totalItemCount"))) {
-          rlang::abort(message = "Invalid value for `include` when calling WorkflowVersionsApi$ListWorkflowVersions. Must be [totalItemCount].",
-                       .subclass = "ApiException",
-                       ApiException = ApiException$new(status = 0,
-                                                       reason = "Invalid value for `include` when calling WorkflowVersionsApi$ListWorkflowVersions. Must be [totalItemCount]."))
-        }
-      }
       query_params[["include"]] <- I(paste(lapply(`include`, URLencode, reserved = TRUE), collapse = ","))
 
       query_params[["pageSize"]] <- `page_size`

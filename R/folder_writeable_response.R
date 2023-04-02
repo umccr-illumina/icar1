@@ -24,9 +24,9 @@
 #' @field modifiedBy The updator of this Folder character [optional]
 #' @field metadata Metadata about this folder object [optional]
 #' @field volumeMetadata Metadata about this folder's volume object [optional]
-#' @field jobStatus  \link{JobStatus} [optional]
+#' @field jobStatus This enum was originally created to store the type of job on a folder or file entity.   The Job entity is now used to track this information for copy operations, with the Illumina.Gds.Api.Models.Enums.JobOperationType   and Illumina.Gds.Api.Models.Enums.JobProgressStatus used to record the type and progress status of the job.  IMPORTANT - Please consider backward compatibility before adding a new enum value. Adding a new enum value will break the existing client using swagger SDK character [optional]
 #' @field jobId The job identifier for the current folder operation. Currently only being used for the delete folder operation. character [optional]
-#' @field archiveJobStorageTier  \link{StorageTier} [optional]
+#' @field archiveJobStorageTier StorageTier character [optional]
 #' @field migrationStatus Status of the root folder migration status from v1 to v2 character [optional]
 #' @field activeJobIds List of Jobs in Pending and In Progress status list(character) [optional]
 #' @field objectStoreAccess  \link{ObjectStoreAccess} [optional]
@@ -81,9 +81,9 @@ FolderWriteableResponse <- R6::R6Class(
     #' @param modifiedBy The updator of this Folder
     #' @param metadata Metadata about this folder
     #' @param volumeMetadata Metadata about this folder's volume
-    #' @param jobStatus jobStatus
+    #' @param jobStatus This enum was originally created to store the type of job on a folder or file entity.   The Job entity is now used to track this information for copy operations, with the Illumina.Gds.Api.Models.Enums.JobOperationType   and Illumina.Gds.Api.Models.Enums.JobProgressStatus used to record the type and progress status of the job.  IMPORTANT - Please consider backward compatibility before adding a new enum value. Adding a new enum value will break the existing client using swagger SDK
     #' @param jobId The job identifier for the current folder operation. Currently only being used for the delete folder operation.
-    #' @param archiveJobStorageTier archiveJobStorageTier
+    #' @param archiveJobStorageTier StorageTier
     #' @param migrationStatus Status of the root folder migration status from v1 to v2
     #' @param activeJobIds List of Jobs in Pending and In Progress status
     #' @param objectStoreAccess objectStoreAccess
@@ -185,10 +185,9 @@ FolderWriteableResponse <- R6::R6Class(
         self$`volumeMetadata` <- `volumeMetadata`
       }
       if (!is.null(`jobStatus`)) {
-        if (!(`jobStatus` %in% c())) {
-          stop(paste("Error! \"", `jobStatus`, "\" cannot be assigned to `jobStatus`. Must be .", sep = ""))
+        if (!(is.character(`jobStatus`) && length(`jobStatus`) == 1)) {
+          stop(paste("Error! Invalid data for `jobStatus`. Must be a string:", `jobStatus`))
         }
-        stopifnot(R6::is.R6(`jobStatus`))
         self$`jobStatus` <- `jobStatus`
       }
       if (!is.null(`jobId`)) {
@@ -198,10 +197,9 @@ FolderWriteableResponse <- R6::R6Class(
         self$`jobId` <- `jobId`
       }
       if (!is.null(`archiveJobStorageTier`)) {
-        if (!(`archiveJobStorageTier` %in% c())) {
-          stop(paste("Error! \"", `archiveJobStorageTier`, "\" cannot be assigned to `archiveJobStorageTier`. Must be .", sep = ""))
+        if (!(is.character(`archiveJobStorageTier`) && length(`archiveJobStorageTier`) == 1)) {
+          stop(paste("Error! Invalid data for `archiveJobStorageTier`. Must be a string:", `archiveJobStorageTier`))
         }
-        stopifnot(R6::is.R6(`archiveJobStorageTier`))
         self$`archiveJobStorageTier` <- `archiveJobStorageTier`
       }
       if (!is.null(`migrationStatus`)) {
@@ -299,7 +297,7 @@ FolderWriteableResponse <- R6::R6Class(
       }
       if (!is.null(self$`jobStatus`)) {
         FolderWriteableResponseObject[["jobStatus"]] <-
-          self$`jobStatus`$toJSON()
+          self$`jobStatus`
       }
       if (!is.null(self$`jobId`)) {
         FolderWriteableResponseObject[["jobId"]] <-
@@ -307,7 +305,7 @@ FolderWriteableResponse <- R6::R6Class(
       }
       if (!is.null(self$`archiveJobStorageTier`)) {
         FolderWriteableResponseObject[["archiveJobStorageTier"]] <-
-          self$`archiveJobStorageTier`$toJSON()
+          self$`archiveJobStorageTier`
       }
       if (!is.null(self$`migrationStatus`)) {
         FolderWriteableResponseObject[["migrationStatus"]] <-
@@ -385,17 +383,13 @@ FolderWriteableResponse <- R6::R6Class(
         self$`volumeMetadata` <- this_object$`volumeMetadata`
       }
       if (!is.null(this_object$`jobStatus`)) {
-        `jobstatus_object` <- JobStatus$new()
-        `jobstatus_object`$fromJSON(jsonlite::toJSON(this_object$`jobStatus`, auto_unbox = TRUE, digits = NA))
-        self$`jobStatus` <- `jobstatus_object`
+        self$`jobStatus` <- this_object$`jobStatus`
       }
       if (!is.null(this_object$`jobId`)) {
         self$`jobId` <- this_object$`jobId`
       }
       if (!is.null(this_object$`archiveJobStorageTier`)) {
-        `archivejobstoragetier_object` <- StorageTier$new()
-        `archivejobstoragetier_object`$fromJSON(jsonlite::toJSON(this_object$`archiveJobStorageTier`, auto_unbox = TRUE, digits = NA))
-        self$`archiveJobStorageTier` <- `archivejobstoragetier_object`
+        self$`archiveJobStorageTier` <- this_object$`archiveJobStorageTier`
       }
       if (!is.null(this_object$`migrationStatus`)) {
         self$`migrationStatus` <- this_object$`migrationStatus`
@@ -558,9 +552,9 @@ FolderWriteableResponse <- R6::R6Class(
         if (!is.null(self$`jobStatus`)) {
           sprintf(
           '"jobStatus":
-          %s
-          ',
-          jsonlite::toJSON(self$`jobStatus`$toJSON(), auto_unbox = TRUE, digits = NA)
+            "%s"
+                    ',
+          self$`jobStatus`
           )
         },
         if (!is.null(self$`jobId`)) {
@@ -574,9 +568,9 @@ FolderWriteableResponse <- R6::R6Class(
         if (!is.null(self$`archiveJobStorageTier`)) {
           sprintf(
           '"archiveJobStorageTier":
-          %s
-          ',
-          jsonlite::toJSON(self$`archiveJobStorageTier`$toJSON(), auto_unbox = TRUE, digits = NA)
+            "%s"
+                    ',
+          self$`archiveJobStorageTier`
           )
         },
         if (!is.null(self$`migrationStatus`)) {
@@ -634,9 +628,9 @@ FolderWriteableResponse <- R6::R6Class(
       self$`modifiedBy` <- this_object$`modifiedBy`
       self$`metadata` <- this_object$`metadata`
       self$`volumeMetadata` <- this_object$`volumeMetadata`
-      self$`jobStatus` <- JobStatus$new()$fromJSON(jsonlite::toJSON(this_object$`jobStatus`, auto_unbox = TRUE, digits = NA))
+      self$`jobStatus` <- this_object$`jobStatus`
       self$`jobId` <- this_object$`jobId`
-      self$`archiveJobStorageTier` <- StorageTier$new()$fromJSON(jsonlite::toJSON(this_object$`archiveJobStorageTier`, auto_unbox = TRUE, digits = NA))
+      self$`archiveJobStorageTier` <- this_object$`archiveJobStorageTier`
       self$`migrationStatus` <- this_object$`migrationStatus`
       self$`activeJobIds` <- ApiClient$new()$deserializeObj(this_object$`activeJobIds`, "array[character]", loadNamespace("icar1"))
       self$`objectStoreAccess` <- ObjectStoreAccess$new()$fromJSON(jsonlite::toJSON(this_object$`objectStoreAccess`, auto_unbox = TRUE, digits = NA))

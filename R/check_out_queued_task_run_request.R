@@ -25,9 +25,6 @@ CheckOutQueuedTaskRunRequest <- R6::R6Class(
     #' @export
     initialize = function(`computeType` = NULL, ...) {
       if (!is.null(`computeType`)) {
-        if (!(`computeType` %in% c("Fpga", "NonFpga"))) {
-          stop(paste("Error! \"", `computeType`, "\" cannot be assigned to `computeType`. Must be \"Fpga\", \"NonFpga\".", sep = ""))
-        }
         if (!(is.character(`computeType`) && length(`computeType`) == 1)) {
           stop(paste("Error! Invalid data for `computeType`. Must be a string:", `computeType`))
         }
@@ -60,9 +57,6 @@ CheckOutQueuedTaskRunRequest <- R6::R6Class(
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`computeType`)) {
-        if (!is.null(this_object$`computeType`) && !(this_object$`computeType` %in% c("Fpga", "NonFpga"))) {
-          stop(paste("Error! \"", this_object$`computeType`, "\" cannot be assigned to `computeType`. Must be \"Fpga\", \"NonFpga\".", sep = ""))
-        }
         self$`computeType` <- this_object$`computeType`
       }
       self
@@ -98,9 +92,6 @@ CheckOutQueuedTaskRunRequest <- R6::R6Class(
     #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
-      if (!is.null(this_object$`computeType`) && !(this_object$`computeType` %in% c("Fpga", "NonFpga"))) {
-        stop(paste("Error! \"", this_object$`computeType`, "\" cannot be assigned to `computeType`. Must be \"Fpga\", \"NonFpga\".", sep = ""))
-      }
       self$`computeType` <- this_object$`computeType`
       self
     },

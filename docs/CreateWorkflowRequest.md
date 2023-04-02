@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **description** | **character** |  | [optional] [Max. length: 256] [Min. length: 0] 
 **organization** | **character** |  | [optional] [Max. length: 255] [Min. length: 0] 
 **workflowVersion** | [**CreateWorkflowVersionRequest**](CreateWorkflowVersionRequest.md) |  | [optional] 
-**toolClass** | **character** |  | [optional] [Enum: [workflow, commandLineTool]] 
+**toolClass** | **character** |  | [optional] 
 **acl** | **array[character]** |  | [optional] 
 **categories** | **array[character]** |  | [optional] 
 

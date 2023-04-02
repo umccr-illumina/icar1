@@ -8,7 +8,7 @@
 #' @description VolumeLifeCycleSettings Class
 #' @format An \code{R6Class} generator object
 #' @field gracePeriodDays Number of days before the files associated to this volume expires integer [optional]
-#' @field gracePeriodEndAction  \link{GracePeriodEndAction} [optional]
+#' @field gracePeriodEndAction  character [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -34,10 +34,9 @@ VolumeLifeCycleSettings <- R6::R6Class(
         self$`gracePeriodDays` <- `gracePeriodDays`
       }
       if (!is.null(`gracePeriodEndAction`)) {
-        if (!(`gracePeriodEndAction` %in% c())) {
-          stop(paste("Error! \"", `gracePeriodEndAction`, "\" cannot be assigned to `gracePeriodEndAction`. Must be .", sep = ""))
+        if (!(is.character(`gracePeriodEndAction`) && length(`gracePeriodEndAction`) == 1)) {
+          stop(paste("Error! Invalid data for `gracePeriodEndAction`. Must be a string:", `gracePeriodEndAction`))
         }
-        stopifnot(R6::is.R6(`gracePeriodEndAction`))
         self$`gracePeriodEndAction` <- `gracePeriodEndAction`
       }
     },
@@ -56,7 +55,7 @@ VolumeLifeCycleSettings <- R6::R6Class(
       }
       if (!is.null(self$`gracePeriodEndAction`)) {
         VolumeLifeCycleSettingsObject[["gracePeriodEndAction"]] <-
-          self$`gracePeriodEndAction`$toJSON()
+          self$`gracePeriodEndAction`
       }
       VolumeLifeCycleSettingsObject
     },
@@ -74,9 +73,7 @@ VolumeLifeCycleSettings <- R6::R6Class(
         self$`gracePeriodDays` <- this_object$`gracePeriodDays`
       }
       if (!is.null(this_object$`gracePeriodEndAction`)) {
-        `graceperiodendaction_object` <- GracePeriodEndAction$new()
-        `graceperiodendaction_object`$fromJSON(jsonlite::toJSON(this_object$`gracePeriodEndAction`, auto_unbox = TRUE, digits = NA))
-        self$`gracePeriodEndAction` <- `graceperiodendaction_object`
+        self$`gracePeriodEndAction` <- this_object$`gracePeriodEndAction`
       }
       self
     },
@@ -100,9 +97,9 @@ VolumeLifeCycleSettings <- R6::R6Class(
         if (!is.null(self$`gracePeriodEndAction`)) {
           sprintf(
           '"gracePeriodEndAction":
-          %s
-          ',
-          jsonlite::toJSON(self$`gracePeriodEndAction`$toJSON(), auto_unbox = TRUE, digits = NA)
+            "%s"
+                    ',
+          self$`gracePeriodEndAction`
           )
         }
       )
@@ -120,7 +117,7 @@ VolumeLifeCycleSettings <- R6::R6Class(
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`gracePeriodDays` <- this_object$`gracePeriodDays`
-      self$`gracePeriodEndAction` <- GracePeriodEndAction$new()$fromJSON(jsonlite::toJSON(this_object$`gracePeriodEndAction`, auto_unbox = TRUE, digits = NA))
+      self$`gracePeriodEndAction` <- this_object$`gracePeriodEndAction`
       self
     },
     #' Validate JSON input with respect to VolumeLifeCycleSettings

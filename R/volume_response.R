@@ -20,7 +20,7 @@
 #' @field createdBy The creator of this Volume character [optional]
 #' @field timeModified The date & time this Volume was updated, in GDS character [optional]
 #' @field modifiedBy The updator of this Volume character [optional]
-#' @field jobStatus  \link{JobStatus} [optional]
+#' @field jobStatus This enum was originally created to store the type of job on a folder or file entity.   The Job entity is now used to track this information for copy operations, with the Illumina.Gds.Api.Models.Enums.JobOperationType   and Illumina.Gds.Api.Models.Enums.JobProgressStatus used to record the type and progress status of the job.  IMPORTANT - Please consider backward compatibility before adding a new enum value. Adding a new enum value will break the existing client using swagger SDK character [optional]
 #' @field metadata Metadata about this Volume object [optional]
 #' @field lifeCycle  \link{VolumeLifeCycleSettings} [optional]
 #' @field migrationStatus Status of the root folder migration status from v1 to v2 character [optional]
@@ -65,7 +65,7 @@ VolumeResponse <- R6::R6Class(
     #' @param createdBy The creator of this Volume
     #' @param timeModified The date & time this Volume was updated, in GDS
     #' @param modifiedBy The updator of this Volume
-    #' @param jobStatus jobStatus
+    #' @param jobStatus This enum was originally created to store the type of job on a folder or file entity.   The Job entity is now used to track this information for copy operations, with the Illumina.Gds.Api.Models.Enums.JobOperationType   and Illumina.Gds.Api.Models.Enums.JobProgressStatus used to record the type and progress status of the job.  IMPORTANT - Please consider backward compatibility before adding a new enum value. Adding a new enum value will break the existing client using swagger SDK
     #' @param metadata Metadata about this Volume
     #' @param lifeCycle lifeCycle
     #' @param migrationStatus Status of the root folder migration status from v1 to v2
@@ -150,10 +150,9 @@ VolumeResponse <- R6::R6Class(
         self$`modifiedBy` <- `modifiedBy`
       }
       if (!is.null(`jobStatus`)) {
-        if (!(`jobStatus` %in% c())) {
-          stop(paste("Error! \"", `jobStatus`, "\" cannot be assigned to `jobStatus`. Must be .", sep = ""))
+        if (!(is.character(`jobStatus`) && length(`jobStatus`) == 1)) {
+          stop(paste("Error! Invalid data for `jobStatus`. Must be a string:", `jobStatus`))
         }
-        stopifnot(R6::is.R6(`jobStatus`))
         self$`jobStatus` <- `jobStatus`
       }
       if (!is.null(`metadata`)) {
@@ -233,7 +232,7 @@ VolumeResponse <- R6::R6Class(
       }
       if (!is.null(self$`jobStatus`)) {
         VolumeResponseObject[["jobStatus"]] <-
-          self$`jobStatus`$toJSON()
+          self$`jobStatus`
       }
       if (!is.null(self$`metadata`)) {
         VolumeResponseObject[["metadata"]] <-
@@ -299,9 +298,7 @@ VolumeResponse <- R6::R6Class(
         self$`modifiedBy` <- this_object$`modifiedBy`
       }
       if (!is.null(this_object$`jobStatus`)) {
-        `jobstatus_object` <- JobStatus$new()
-        `jobstatus_object`$fromJSON(jsonlite::toJSON(this_object$`jobStatus`, auto_unbox = TRUE, digits = NA))
-        self$`jobStatus` <- `jobstatus_object`
+        self$`jobStatus` <- this_object$`jobStatus`
       }
       if (!is.null(this_object$`metadata`)) {
         self$`metadata` <- this_object$`metadata`
@@ -432,9 +429,9 @@ VolumeResponse <- R6::R6Class(
         if (!is.null(self$`jobStatus`)) {
           sprintf(
           '"jobStatus":
-          %s
-          ',
-          jsonlite::toJSON(self$`jobStatus`$toJSON(), auto_unbox = TRUE, digits = NA)
+            "%s"
+                    ',
+          self$`jobStatus`
           )
         },
         if (!is.null(self$`metadata`)) {
@@ -488,7 +485,7 @@ VolumeResponse <- R6::R6Class(
       self$`createdBy` <- this_object$`createdBy`
       self$`timeModified` <- this_object$`timeModified`
       self$`modifiedBy` <- this_object$`modifiedBy`
-      self$`jobStatus` <- JobStatus$new()$fromJSON(jsonlite::toJSON(this_object$`jobStatus`, auto_unbox = TRUE, digits = NA))
+      self$`jobStatus` <- this_object$`jobStatus`
       self$`metadata` <- this_object$`metadata`
       self$`lifeCycle` <- VolumeLifeCycleSettings$new()$fromJSON(jsonlite::toJSON(this_object$`lifeCycle`, auto_unbox = TRUE, digits = NA))
       self$`migrationStatus` <- this_object$`migrationStatus`

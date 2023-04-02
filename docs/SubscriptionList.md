@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **lastPageToken** | **character** |  | [optional] 
 **totalItemCount** | **integer** |  | [optional] 
 **totalPageCount** | **integer** |  | [optional] 
-**sortedBy** | [**SubscriptionListSortFields**](SubscriptionListSortFields.md) |  | [optional] [Enum: ] 
-**sortDirection** | [**SortDirection**](SortDirection.md) |  | [optional] [Enum: ] 
+**sortedBy** | **character** |  | [optional] 
+**sortDirection** | **character** |  | [optional] 
 
 

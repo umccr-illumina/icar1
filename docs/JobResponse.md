@@ -6,11 +6,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **character** | A unique identifier for this Job | [optional] 
 **parentFolderUrn** | **character** | The Universal Resource Name of the parent folder associated with the Job | [optional] 
-**operationType** | [**JobOperationType**](JobOperationType.md) |  | [optional] [Enum: ] 
+**operationType** | **character** | The valid job operation type values for resources in GDS  IMPORTANT - Please consider backward compatibility before adding a new enum value. Adding a new enum value will break the existing client using swagger SDK | [optional] 
 **jobType** | **character** |  | [optional] 
 **operationParameters** | [**JobOperationParameters**](JobOperationParameters.md) |  | [optional] 
 **results** | [**JobOutput**](JobOutput.md) |  | [optional] 
-**progressStatus** | [**JobProgressStatus**](JobProgressStatus.md) |  | [optional] [Enum: ] 
+**progressStatus** | **character** | The valid Job Status values for folders in GDS.  IMPORTANT - Please consider backward compatibility before adding a new enum value. Adding a new enum value will break the existing client using swagger SDK | [optional] 
 **timeCreated** | **character** | The date &amp; time this Folder was created, in GDS | [optional] 
 **createdBy** | **character** | The creator of this Job | [optional] 
 **timeModified** | **character** | The date &amp; time this Job was updated, in GDS | [optional] 

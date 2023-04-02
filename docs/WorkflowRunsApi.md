@@ -25,7 +25,7 @@ library(icar1)
 #
 # prepare function argument(s)
 var_run_id <- "run_id_example" # character | ID of the workflow run
-var_include <- c("definition") # array[character] | Comma-separated list of properties to include in the response (Optional)
+var_include <- c("inner_example") # array[character] | Comma-separated list of properties to include in the response (Optional)
 var_body <- AbortWorkflowRunRequest$new("error_example", "cause_example") # AbortWorkflowRunRequest |  (Optional)
 
 api_instance <- WorkflowRunsApi$new()
@@ -38,7 +38,7 @@ api_instance$api_client$api_keys["Authorization"] <- Sys.getenv("API_KEY")
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **run_id** | **character**| ID of the workflow run | 
- **include** | Enum [definition, engineParameters] | Comma-separated list of properties to include in the response | [optional] 
+ **include** | list( **character** )| Comma-separated list of properties to include in the response | [optional] 
  **body** | [**AbortWorkflowRunRequest**](AbortWorkflowRunRequest.md)|  | [optional] 
 
 ### Return type
@@ -79,7 +79,7 @@ library(icar1)
 #
 # prepare function argument(s)
 var_run_id <- "run_id_example" # character | ID of the workflow run
-var_include <- c("definition") # array[character] | Comma-separated list of properties to include in the response (Optional)
+var_include <- c("inner_example") # array[character] | Comma-separated list of properties to include in the response (Optional)
 
 api_instance <- WorkflowRunsApi$new()
 # Configure API key authorization: Bearer
@@ -91,7 +91,7 @@ api_instance$api_client$api_keys["Authorization"] <- Sys.getenv("API_KEY")
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **run_id** | **character**| ID of the workflow run | 
- **include** | Enum [definition, engineParameters] | Comma-separated list of properties to include in the response | [optional] 
+ **include** | list( **character** )| Comma-separated list of properties to include in the response | [optional] 
 
 ### Return type
 
@@ -132,7 +132,7 @@ library(icar1)
 # prepare function argument(s)
 var_run_id <- "run_id_example" # character | ID of the workflow run
 var_sort <- "eventId asc" # character |  (Optional)
-var_include <- c("totalItemCount") # array[character] | Comma-separated list of properties to include in the response (Optional)
+var_include <- c("inner_example") # array[character] | Comma-separated list of properties to include in the response (Optional)
 var_page_size <- 10 # integer | Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified. (Optional)
 var_page_token <- "page_token_example" # character | Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified. (Optional)
 
@@ -147,7 +147,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **run_id** | **character**| ID of the workflow run | 
  **sort** | **character**|  | [optional] [default to &quot;eventId asc&quot;]
- **include** | Enum [totalItemCount] | Comma-separated list of properties to include in the response | [optional] 
+ **include** | list( **character** )| Comma-separated list of properties to include in the response | [optional] 
  **page_size** | **integer**| Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified. | [optional] [default to 10]
  **page_token** | **character**| Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified. | [optional] 
 
@@ -188,10 +188,10 @@ library(icar1)
 # Get a list of workflow runs
 #
 # prepare function argument(s)
-var_status <- c("aborted") # array[character] |  (Optional)
+var_status <- c("inner_example") # array[character] |  (Optional)
 var_tenant_id <- "tenant_id_example" # character | ID of the tenant (Optional)
 var_name <- "name_example" # character |  (Optional)
-var_include <- c("totalItemCount") # array[character] | Comma-separated list of properties to include in the response (Optional)
+var_include <- c("inner_example") # array[character] | Comma-separated list of properties to include in the response (Optional)
 var_page_size <- 10 # integer | Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified. (Optional)
 var_page_token <- "page_token_example" # character | Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified. (Optional)
 var_sort <- "timeCreated asc" # character | Specifies the order to include list items as \"_{fieldName}_ [asc|desc]\". The second field is optional and specifies the sort direction (\"asc\" for ascending or \"desc\" for descending). (Optional)
@@ -205,10 +205,10 @@ api_instance$api_client$api_keys["Authorization"] <- Sys.getenv("API_KEY")
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **status** | Enum [aborted, aborting, failed, new, running, submitted, succeeded, timedOut] |  | [optional] 
+ **status** | list( **character** )|  | [optional] 
  **tenant_id** | **character**| ID of the tenant | [optional] 
  **name** | **character**|  | [optional] 
- **include** | Enum [totalItemCount] | Comma-separated list of properties to include in the response | [optional] 
+ **include** | list( **character** )| Comma-separated list of properties to include in the response | [optional] 
  **page_size** | **integer**| Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified. | [optional] [default to 10]
  **page_token** | **character**| Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified. | [optional] 
  **sort** | **character**| Specifies the order to include list items as \&quot;_{fieldName}_ [asc|desc]\&quot;. The second field is optional and specifies the sort direction (\&quot;asc\&quot; for ascending or \&quot;desc\&quot; for descending). | [optional] [default to &quot;timeCreated asc&quot;]

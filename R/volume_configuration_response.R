@@ -12,7 +12,7 @@
 #' @field tenantId The unique identifier for this Volume Configuration's Tenant character [optional]
 #' @field subTenantId The unique identifier for this Volume Configurations's Sub Tenant character [optional]
 #' @field urn The Universal Resource Name, unique to this Volume Configuration character [optional]
-#' @field onlineStatus  \link{VolumeConfigurationOnlineStatus} [optional]
+#' @field onlineStatus The valid Online Status values for Volume configurations in GDS character [optional]
 #' @field errorCode Error code returned from the object store character [optional]
 #' @field errorMessage Error message returned from the object store character [optional]
 #' @field timeOfLastError Timestamp of the last observed error. character [optional]
@@ -51,7 +51,7 @@ VolumeConfigurationResponse <- R6::R6Class(
     #' @param tenantId The unique identifier for this Volume Configuration's Tenant
     #' @param subTenantId The unique identifier for this Volume Configurations's Sub Tenant
     #' @param urn The Universal Resource Name, unique to this Volume Configuration
-    #' @param onlineStatus onlineStatus
+    #' @param onlineStatus The valid Online Status values for Volume configurations in GDS
     #' @param errorCode Error code returned from the object store
     #' @param errorMessage Error message returned from the object store
     #' @param timeOfLastError Timestamp of the last observed error.
@@ -94,10 +94,9 @@ VolumeConfigurationResponse <- R6::R6Class(
         self$`urn` <- `urn`
       }
       if (!is.null(`onlineStatus`)) {
-        if (!(`onlineStatus` %in% c())) {
-          stop(paste("Error! \"", `onlineStatus`, "\" cannot be assigned to `onlineStatus`. Must be .", sep = ""))
+        if (!(is.character(`onlineStatus`) && length(`onlineStatus`) == 1)) {
+          stop(paste("Error! Invalid data for `onlineStatus`. Must be a string:", `onlineStatus`))
         }
-        stopifnot(R6::is.R6(`onlineStatus`))
         self$`onlineStatus` <- `onlineStatus`
       }
       if (!is.null(`errorCode`)) {
@@ -178,7 +177,7 @@ VolumeConfigurationResponse <- R6::R6Class(
       }
       if (!is.null(self$`onlineStatus`)) {
         VolumeConfigurationResponseObject[["onlineStatus"]] <-
-          self$`onlineStatus`$toJSON()
+          self$`onlineStatus`
       }
       if (!is.null(self$`errorCode`)) {
         VolumeConfigurationResponseObject[["errorCode"]] <-
@@ -240,9 +239,7 @@ VolumeConfigurationResponse <- R6::R6Class(
         self$`urn` <- this_object$`urn`
       }
       if (!is.null(this_object$`onlineStatus`)) {
-        `onlinestatus_object` <- VolumeConfigurationOnlineStatus$new()
-        `onlinestatus_object`$fromJSON(jsonlite::toJSON(this_object$`onlineStatus`, auto_unbox = TRUE, digits = NA))
-        self$`onlineStatus` <- `onlinestatus_object`
+        self$`onlineStatus` <- this_object$`onlineStatus`
       }
       if (!is.null(this_object$`errorCode`)) {
         self$`errorCode` <- this_object$`errorCode`
@@ -324,9 +321,9 @@ VolumeConfigurationResponse <- R6::R6Class(
         if (!is.null(self$`onlineStatus`)) {
           sprintf(
           '"onlineStatus":
-          %s
-          ',
-          jsonlite::toJSON(self$`onlineStatus`$toJSON(), auto_unbox = TRUE, digits = NA)
+            "%s"
+                    ',
+          self$`onlineStatus`
           )
         },
         if (!is.null(self$`errorCode`)) {
@@ -412,7 +409,7 @@ VolumeConfigurationResponse <- R6::R6Class(
       self$`tenantId` <- this_object$`tenantId`
       self$`subTenantId` <- this_object$`subTenantId`
       self$`urn` <- this_object$`urn`
-      self$`onlineStatus` <- VolumeConfigurationOnlineStatus$new()$fromJSON(jsonlite::toJSON(this_object$`onlineStatus`, auto_unbox = TRUE, digits = NA))
+      self$`onlineStatus` <- this_object$`onlineStatus`
       self$`errorCode` <- this_object$`errorCode`
       self$`errorMessage` <- this_object$`errorMessage`
       self$`timeOfLastError` <- this_object$`timeOfLastError`

@@ -10,7 +10,7 @@
 #' @field timeGracePeriodEnds If set, date when billing for the file will start character [optional]
 #' @field timeToBeArchived If set, date when file will be archived character [optional]
 #' @field timeToBeDeleted If set, date when file will be deleted character [optional]
-#' @field archiveStorageTier  \link{FileArchiveStorageTier} [optional]
+#' @field archiveStorageTier  character [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -52,10 +52,9 @@ FileLifeCycleSettings <- R6::R6Class(
         self$`timeToBeDeleted` <- `timeToBeDeleted`
       }
       if (!is.null(`archiveStorageTier`)) {
-        if (!(`archiveStorageTier` %in% c())) {
-          stop(paste("Error! \"", `archiveStorageTier`, "\" cannot be assigned to `archiveStorageTier`. Must be .", sep = ""))
+        if (!(is.character(`archiveStorageTier`) && length(`archiveStorageTier`) == 1)) {
+          stop(paste("Error! Invalid data for `archiveStorageTier`. Must be a string:", `archiveStorageTier`))
         }
-        stopifnot(R6::is.R6(`archiveStorageTier`))
         self$`archiveStorageTier` <- `archiveStorageTier`
       }
     },
@@ -82,7 +81,7 @@ FileLifeCycleSettings <- R6::R6Class(
       }
       if (!is.null(self$`archiveStorageTier`)) {
         FileLifeCycleSettingsObject[["archiveStorageTier"]] <-
-          self$`archiveStorageTier`$toJSON()
+          self$`archiveStorageTier`
       }
       FileLifeCycleSettingsObject
     },
@@ -106,9 +105,7 @@ FileLifeCycleSettings <- R6::R6Class(
         self$`timeToBeDeleted` <- this_object$`timeToBeDeleted`
       }
       if (!is.null(this_object$`archiveStorageTier`)) {
-        `archivestoragetier_object` <- FileArchiveStorageTier$new()
-        `archivestoragetier_object`$fromJSON(jsonlite::toJSON(this_object$`archiveStorageTier`, auto_unbox = TRUE, digits = NA))
-        self$`archiveStorageTier` <- `archivestoragetier_object`
+        self$`archiveStorageTier` <- this_object$`archiveStorageTier`
       }
       self
     },
@@ -148,9 +145,9 @@ FileLifeCycleSettings <- R6::R6Class(
         if (!is.null(self$`archiveStorageTier`)) {
           sprintf(
           '"archiveStorageTier":
-          %s
-          ',
-          jsonlite::toJSON(self$`archiveStorageTier`$toJSON(), auto_unbox = TRUE, digits = NA)
+            "%s"
+                    ',
+          self$`archiveStorageTier`
           )
         }
       )
@@ -170,7 +167,7 @@ FileLifeCycleSettings <- R6::R6Class(
       self$`timeGracePeriodEnds` <- this_object$`timeGracePeriodEnds`
       self$`timeToBeArchived` <- this_object$`timeToBeArchived`
       self$`timeToBeDeleted` <- this_object$`timeToBeDeleted`
-      self$`archiveStorageTier` <- FileArchiveStorageTier$new()$fromJSON(jsonlite::toJSON(this_object$`archiveStorageTier`, auto_unbox = TRUE, digits = NA))
+      self$`archiveStorageTier` <- this_object$`archiveStorageTier`
       self
     },
     #' Validate JSON input with respect to FileLifeCycleSettings

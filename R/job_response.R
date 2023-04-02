@@ -9,11 +9,11 @@
 #' @format An \code{R6Class} generator object
 #' @field id A unique identifier for this Job character [optional]
 #' @field parentFolderUrn The Universal Resource Name of the parent folder associated with the Job character [optional]
-#' @field operationType  \link{JobOperationType} [optional]
+#' @field operationType The valid job operation type values for resources in GDS  IMPORTANT - Please consider backward compatibility before adding a new enum value. Adding a new enum value will break the existing client using swagger SDK character [optional]
 #' @field jobType  character [optional]
 #' @field operationParameters  \link{JobOperationParameters} [optional]
 #' @field results  \link{JobOutput} [optional]
-#' @field progressStatus  \link{JobProgressStatus} [optional]
+#' @field progressStatus The valid Job Status values for folders in GDS.  IMPORTANT - Please consider backward compatibility before adding a new enum value. Adding a new enum value will break the existing client using swagger SDK character [optional]
 #' @field timeCreated The date & time this Folder was created, in GDS character [optional]
 #' @field createdBy The creator of this Job character [optional]
 #' @field timeModified The date & time this Job was updated, in GDS character [optional]
@@ -42,11 +42,11 @@ JobResponse <- R6::R6Class(
     #'
     #' @param id A unique identifier for this Job
     #' @param parentFolderUrn The Universal Resource Name of the parent folder associated with the Job
-    #' @param operationType operationType
+    #' @param operationType The valid job operation type values for resources in GDS  IMPORTANT - Please consider backward compatibility before adding a new enum value. Adding a new enum value will break the existing client using swagger SDK
     #' @param jobType jobType
     #' @param operationParameters operationParameters
     #' @param results results
-    #' @param progressStatus progressStatus
+    #' @param progressStatus The valid Job Status values for folders in GDS.  IMPORTANT - Please consider backward compatibility before adding a new enum value. Adding a new enum value will break the existing client using swagger SDK
     #' @param timeCreated The date & time this Folder was created, in GDS
     #' @param createdBy The creator of this Job
     #' @param timeModified The date & time this Job was updated, in GDS
@@ -67,10 +67,9 @@ JobResponse <- R6::R6Class(
         self$`parentFolderUrn` <- `parentFolderUrn`
       }
       if (!is.null(`operationType`)) {
-        if (!(`operationType` %in% c())) {
-          stop(paste("Error! \"", `operationType`, "\" cannot be assigned to `operationType`. Must be .", sep = ""))
+        if (!(is.character(`operationType`) && length(`operationType`) == 1)) {
+          stop(paste("Error! Invalid data for `operationType`. Must be a string:", `operationType`))
         }
-        stopifnot(R6::is.R6(`operationType`))
         self$`operationType` <- `operationType`
       }
       if (!is.null(`jobType`)) {
@@ -88,10 +87,9 @@ JobResponse <- R6::R6Class(
         self$`results` <- `results`
       }
       if (!is.null(`progressStatus`)) {
-        if (!(`progressStatus` %in% c())) {
-          stop(paste("Error! \"", `progressStatus`, "\" cannot be assigned to `progressStatus`. Must be .", sep = ""))
+        if (!(is.character(`progressStatus`) && length(`progressStatus`) == 1)) {
+          stop(paste("Error! Invalid data for `progressStatus`. Must be a string:", `progressStatus`))
         }
-        stopifnot(R6::is.R6(`progressStatus`))
         self$`progressStatus` <- `progressStatus`
       }
       if (!is.null(`timeCreated`)) {
@@ -138,7 +136,7 @@ JobResponse <- R6::R6Class(
       }
       if (!is.null(self$`operationType`)) {
         JobResponseObject[["operationType"]] <-
-          self$`operationType`$toJSON()
+          self$`operationType`
       }
       if (!is.null(self$`jobType`)) {
         JobResponseObject[["jobType"]] <-
@@ -154,7 +152,7 @@ JobResponse <- R6::R6Class(
       }
       if (!is.null(self$`progressStatus`)) {
         JobResponseObject[["progressStatus"]] <-
-          self$`progressStatus`$toJSON()
+          self$`progressStatus`
       }
       if (!is.null(self$`timeCreated`)) {
         JobResponseObject[["timeCreated"]] <-
@@ -191,9 +189,7 @@ JobResponse <- R6::R6Class(
         self$`parentFolderUrn` <- this_object$`parentFolderUrn`
       }
       if (!is.null(this_object$`operationType`)) {
-        `operationtype_object` <- JobOperationType$new()
-        `operationtype_object`$fromJSON(jsonlite::toJSON(this_object$`operationType`, auto_unbox = TRUE, digits = NA))
-        self$`operationType` <- `operationtype_object`
+        self$`operationType` <- this_object$`operationType`
       }
       if (!is.null(this_object$`jobType`)) {
         self$`jobType` <- this_object$`jobType`
@@ -209,9 +205,7 @@ JobResponse <- R6::R6Class(
         self$`results` <- `results_object`
       }
       if (!is.null(this_object$`progressStatus`)) {
-        `progressstatus_object` <- JobProgressStatus$new()
-        `progressstatus_object`$fromJSON(jsonlite::toJSON(this_object$`progressStatus`, auto_unbox = TRUE, digits = NA))
-        self$`progressStatus` <- `progressstatus_object`
+        self$`progressStatus` <- this_object$`progressStatus`
       }
       if (!is.null(this_object$`timeCreated`)) {
         self$`timeCreated` <- this_object$`timeCreated`
@@ -255,9 +249,9 @@ JobResponse <- R6::R6Class(
         if (!is.null(self$`operationType`)) {
           sprintf(
           '"operationType":
-          %s
-          ',
-          jsonlite::toJSON(self$`operationType`$toJSON(), auto_unbox = TRUE, digits = NA)
+            "%s"
+                    ',
+          self$`operationType`
           )
         },
         if (!is.null(self$`jobType`)) {
@@ -287,9 +281,9 @@ JobResponse <- R6::R6Class(
         if (!is.null(self$`progressStatus`)) {
           sprintf(
           '"progressStatus":
-          %s
-          ',
-          jsonlite::toJSON(self$`progressStatus`$toJSON(), auto_unbox = TRUE, digits = NA)
+            "%s"
+                    ',
+          self$`progressStatus`
           )
         },
         if (!is.null(self$`timeCreated`)) {
@@ -340,11 +334,11 @@ JobResponse <- R6::R6Class(
       this_object <- jsonlite::fromJSON(input_json)
       self$`id` <- this_object$`id`
       self$`parentFolderUrn` <- this_object$`parentFolderUrn`
-      self$`operationType` <- JobOperationType$new()$fromJSON(jsonlite::toJSON(this_object$`operationType`, auto_unbox = TRUE, digits = NA))
+      self$`operationType` <- this_object$`operationType`
       self$`jobType` <- this_object$`jobType`
       self$`operationParameters` <- JobOperationParameters$new()$fromJSON(jsonlite::toJSON(this_object$`operationParameters`, auto_unbox = TRUE, digits = NA))
       self$`results` <- JobOutput$new()$fromJSON(jsonlite::toJSON(this_object$`results`, auto_unbox = TRUE, digits = NA))
-      self$`progressStatus` <- JobProgressStatus$new()$fromJSON(jsonlite::toJSON(this_object$`progressStatus`, auto_unbox = TRUE, digits = NA))
+      self$`progressStatus` <- this_object$`progressStatus`
       self$`timeCreated` <- this_object$`timeCreated`
       self$`createdBy` <- this_object$`createdBy`
       self$`timeModified` <- this_object$`timeModified`

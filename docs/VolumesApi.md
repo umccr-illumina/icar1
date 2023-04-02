@@ -25,7 +25,7 @@ library(icar1)
 # Create a volume in GDS and receive temporary credentials for upload
 #
 # prepare function argument(s)
-var_body <- CreateVolumeRequest$new("name_example", "volumeConfigurationName_example", "rootKeyPrefix_example", 123, VolumeLifeCycleSettings$new(123, GracePeriodEndAction$new())) # CreateVolumeRequest | 
+var_body <- CreateVolumeRequest$new("name_example", "volumeConfigurationName_example", "rootKeyPrefix_example", 123, VolumeLifeCycleSettings$new(123, "gracePeriodEndAction_example")) # CreateVolumeRequest | 
 var_include <- "include_example" # character | Optionally include additional fields in the response.              Possible values: ObjectStoreAccess (Optional)
 
 api_instance <- VolumesApi$new()
@@ -241,7 +241,7 @@ library(icar1)
 # prepare function argument(s)
 var_volume_id <- "volume_id_example" # character | Unique identifier for the volume to be updated.
 var_include <- "include_example" # character | Optionally include additional fields in the response.              Possible values: ObjectStoreAccess (Optional)
-var_body <- UpdateVolumeRequest$new(123, VolumeLifeCycleSettings$new(123, GracePeriodEndAction$new())) # UpdateVolumeRequest |  (Optional)
+var_body <- UpdateVolumeRequest$new(123, VolumeLifeCycleSettings$new(123, "gracePeriodEndAction_example")) # UpdateVolumeRequest |  (Optional)
 
 api_instance <- VolumesApi$new()
 # Configure API key authorization: Bearer

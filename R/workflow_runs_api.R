@@ -18,7 +18,7 @@
 #'
 #' \itemize{
 #' \item \emph{ @param } run_id character
-#' \item \emph{ @param } include Enum < [definition, engineParameters] >
+#' \item \emph{ @param } include list( character )
 #' \item \emph{ @param } body \link{AbortWorkflowRunRequest}
 #' \item \emph{ @returnType } \link{WorkflowRun} \cr
 #'
@@ -73,7 +73,7 @@
 #'
 #' \itemize{
 #' \item \emph{ @param } run_id character
-#' \item \emph{ @param } include Enum < [definition, engineParameters] >
+#' \item \emph{ @param } include list( character )
 #' \item \emph{ @returnType } \link{WorkflowRun} \cr
 #'
 #' \item On encountering errors, an error of subclass ApiException will be thrown.
@@ -128,7 +128,7 @@
 #' \itemize{
 #' \item \emph{ @param } run_id character
 #' \item \emph{ @param } sort character
-#' \item \emph{ @param } include Enum < [totalItemCount] >
+#' \item \emph{ @param } include list( character )
 #' \item \emph{ @param } page_size integer
 #' \item \emph{ @param } page_token character
 #' \item \emph{ @returnType } \link{WorkflowRunHistoryEventList} \cr
@@ -183,10 +183,10 @@
 #' Gets a list of workflow runs.
 #'
 #' \itemize{
-#' \item \emph{ @param } status Enum < [aborted, aborting, failed, new, running, submitted, succeeded, timedOut] >
+#' \item \emph{ @param } status list( character )
 #' \item \emph{ @param } tenant_id character
 #' \item \emph{ @param } name character
-#' \item \emph{ @param } include Enum < [totalItemCount] >
+#' \item \emph{ @param } include list( character )
 #' \item \emph{ @param } page_size integer
 #' \item \emph{ @param } page_token character
 #' \item \emph{ @param } sort character
@@ -240,7 +240,7 @@
 #'
 #' library(icar1)
 #' var_run_id <- "run_id_example" # character | ID of the workflow run
-#' var_include <- c("definition") # array[character] | Comma-separated list of properties to include in the response (Optional)
+#' var_include <- c("inner_example") # array[character] | Comma-separated list of properties to include in the response (Optional)
 #' var_body <- AbortWorkflowRunRequest$new("error_example", "cause_example") # AbortWorkflowRunRequest |  (Optional)
 #'
 #' #Abort a workflow run
@@ -255,7 +255,7 @@
 #'
 #' library(icar1)
 #' var_run_id <- "run_id_example" # character | ID of the workflow run
-#' var_include <- c("definition") # array[character] | Comma-separated list of properties to include in the response (Optional)
+#' var_include <- c("inner_example") # array[character] | Comma-separated list of properties to include in the response (Optional)
 #'
 #' #Get the details of a workflow run
 #' api_instance <- WorkflowRunsApi$new()
@@ -270,7 +270,7 @@
 #' library(icar1)
 #' var_run_id <- "run_id_example" # character | ID of the workflow run
 #' var_sort <- "eventId asc" # character |  (Optional)
-#' var_include <- c("totalItemCount") # array[character] | Comma-separated list of properties to include in the response (Optional)
+#' var_include <- c("inner_example") # array[character] | Comma-separated list of properties to include in the response (Optional)
 #' var_page_size <- 10 # integer | Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified. (Optional)
 #' var_page_token <- "page_token_example" # character | Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified. (Optional)
 #'
@@ -285,10 +285,10 @@
 #' ####################  ListWorkflowRuns  ####################
 #'
 #' library(icar1)
-#' var_status <- c("aborted") # array[character] |  (Optional)
+#' var_status <- c("inner_example") # array[character] |  (Optional)
 #' var_tenant_id <- "tenant_id_example" # character | ID of the tenant (Optional)
 #' var_name <- "name_example" # character |  (Optional)
-#' var_include <- c("totalItemCount") # array[character] | Comma-separated list of properties to include in the response (Optional)
+#' var_include <- c("inner_example") # array[character] | Comma-separated list of properties to include in the response (Optional)
 #' var_page_size <- 10 # integer | Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified. (Optional)
 #' var_page_token <- "page_token_example" # character | Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified. (Optional)
 #' var_sort <- "timeCreated asc" # character | Specifies the order to include list items as \"_{fieldName}_ [asc|desc]\". The second field is optional and specifies the sort direction (\"asc\" for ascending or \"desc\" for descending). (Optional)
@@ -381,15 +381,6 @@ WorkflowRunsApi <- R6::R6Class(
 
 
       # no explore
-      # validate enum values
-      for (query_item in `include`) {
-        if (!(query_item %in% c("definition", "engineParameters"))) {
-          rlang::abort(message = "Invalid value for `include` when calling WorkflowRunsApi$AbortWorkflowRun. Must be [definition, engineParameters].",
-                       .subclass = "ApiException",
-                       ApiException = ApiException$new(status = 0,
-                                                       reason = "Invalid value for `include` when calling WorkflowRunsApi$AbortWorkflowRun. Must be [definition, engineParameters]."))
-        }
-      }
       query_params[["include"]] <- I(paste(lapply(`include`, URLencode, reserved = TRUE), collapse = ","))
 
       if (!is.null(`body`)) {
@@ -508,15 +499,6 @@ WorkflowRunsApi <- R6::R6Class(
 
 
       # no explore
-      # validate enum values
-      for (query_item in `include`) {
-        if (!(query_item %in% c("definition", "engineParameters"))) {
-          rlang::abort(message = "Invalid value for `include` when calling WorkflowRunsApi$GetWorkflowRun. Must be [definition, engineParameters].",
-                       .subclass = "ApiException",
-                       ApiException = ApiException$new(status = 0,
-                                                       reason = "Invalid value for `include` when calling WorkflowRunsApi$GetWorkflowRun. Must be [definition, engineParameters]."))
-        }
-      }
       query_params[["include"]] <- I(paste(lapply(`include`, URLencode, reserved = TRUE), collapse = ","))
 
       local_var_url_path <- "/v1/workflows/runs/{runId}"
@@ -640,15 +622,6 @@ WorkflowRunsApi <- R6::R6Class(
       query_params[["sort"]] <- `sort`
 
       # no explore
-      # validate enum values
-      for (query_item in `include`) {
-        if (!(query_item %in% c("totalItemCount"))) {
-          rlang::abort(message = "Invalid value for `include` when calling WorkflowRunsApi$ListWorkflowRunHistory. Must be [totalItemCount].",
-                       .subclass = "ApiException",
-                       ApiException = ApiException$new(status = 0,
-                                                       reason = "Invalid value for `include` when calling WorkflowRunsApi$ListWorkflowRunHistory. Must be [totalItemCount]."))
-        }
-      }
       query_params[["include"]] <- I(paste(lapply(`include`, URLencode, reserved = TRUE), collapse = ","))
 
       query_params[["pageSize"]] <- `page_size`
@@ -773,15 +746,6 @@ WorkflowRunsApi <- R6::R6Class(
 
 
       # no explore
-      # validate enum values
-      for (query_item in `status`) {
-        if (!(query_item %in% c("aborted", "aborting", "failed", "new", "running", "submitted", "succeeded", "timedOut"))) {
-          rlang::abort(message = "Invalid value for `status` when calling WorkflowRunsApi$ListWorkflowRuns. Must be [aborted, aborting, failed, new, running, submitted, succeeded, timedOut].",
-                       .subclass = "ApiException",
-                       ApiException = ApiException$new(status = 0,
-                                                       reason = "Invalid value for `status` when calling WorkflowRunsApi$ListWorkflowRuns. Must be [aborted, aborting, failed, new, running, submitted, succeeded, timedOut]."))
-        }
-      }
       query_params[["status"]] <- I(paste(lapply(`status`, URLencode, reserved = TRUE), collapse = ","))
 
       query_params[["tenantId"]] <- `tenant_id`
@@ -789,15 +753,6 @@ WorkflowRunsApi <- R6::R6Class(
       query_params[["name"]] <- `name`
 
       # no explore
-      # validate enum values
-      for (query_item in `include`) {
-        if (!(query_item %in% c("totalItemCount"))) {
-          rlang::abort(message = "Invalid value for `include` when calling WorkflowRunsApi$ListWorkflowRuns. Must be [totalItemCount].",
-                       .subclass = "ApiException",
-                       ApiException = ApiException$new(status = 0,
-                                                       reason = "Invalid value for `include` when calling WorkflowRunsApi$ListWorkflowRuns. Must be [totalItemCount]."))
-        }
-      }
       query_params[["include"]] <- I(paste(lapply(`include`, URLencode, reserved = TRUE), collapse = ","))
 
       query_params[["pageSize"]] <- `page_size`

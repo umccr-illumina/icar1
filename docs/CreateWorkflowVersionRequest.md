@@ -10,6 +10,6 @@ Name | Type | Description | Notes
 **language** | [**WorkflowLanguage**](WorkflowLanguage.md) |  | [optional] 
 **definition** | **object** |  | [optional] 
 **acl** | **array[character]** |  | [optional] 
-**status** | **character** | Published Status of the workflow version | [optional] [Enum: [draft, released, obsolete]] 
+**status** | **character** | Published Status of the workflow version | [optional] 
 
 

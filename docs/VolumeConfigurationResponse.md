@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **tenantId** | **character** | The unique identifier for this Volume Configuration&#39;s Tenant | [optional] 
 **subTenantId** | **character** | The unique identifier for this Volume Configurations&#39;s Sub Tenant | [optional] 
 **urn** | **character** | The Universal Resource Name, unique to this Volume Configuration | [optional] 
-**onlineStatus** | [**VolumeConfigurationOnlineStatus**](VolumeConfigurationOnlineStatus.md) |  | [optional] [Enum: ] 
+**onlineStatus** | **character** | The valid Online Status values for Volume configurations in GDS | [optional] 
 **errorCode** | **character** | Error code returned from the object store | [optional] 
 **errorMessage** | **character** | Error message returned from the object store | [optional] 
 **timeOfLastError** | **character** | Timestamp of the last observed error. | [optional] 
